@@ -29,7 +29,6 @@ class CatsViewController: UIViewController {
 
     // MARK: - Setup
     func setup() {
-        self.title = viewModel.titleText
         setupDelegeates()
         [progress].forEach(view.addSubview(_:))
     }

@@ -52,10 +52,6 @@ class CatsViewModel {
 
 extension CatsViewModel: CatsViewModelType {
     
-    var titleText: String {
-        return "Cats"
-    }
-    
     func numberOfItems() -> Int {
         return cats.count
     }
@@ -87,8 +83,6 @@ protocol CatsViewModelType {
     var viewDelegate: CatsViewModelViewDelegate? { get set }
 
     // Data Source
-    var titleText: String { get }
-
     func numberOfItems() -> Int
 
     func itemFor(row: Int) -> UITableViewCell // PlaceViewDataType

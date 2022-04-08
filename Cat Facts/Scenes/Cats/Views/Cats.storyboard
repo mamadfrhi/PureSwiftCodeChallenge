@@ -31,7 +31,7 @@
                             <constraint firstItem="oD0-fg-3TG" firstAttribute="trailing" secondItem="bTV-qy-MPy" secondAttribute="trailing" id="khu-hk-YSa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="BeN-vZ-MOA">
+                    <navigationItem key="navigationItem" title="Cats" id="BeN-vZ-MOA">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bWD-yj-l0y">
                             <connections>
                                 <action selector="add:" destination="cZy-lz-ZEZ" id="vCo-qK-rrh"/>
