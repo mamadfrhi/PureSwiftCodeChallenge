@@ -35,6 +35,11 @@ class AppCoordinator: Coordinator {
         
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
+        
+        // show Cats.storyboard as the beginning of the app
+        let catsCoordinator = CatsCoordinator(rootNavigationViewController: self.rootViewController,
+                                              apiClient: self.apiClient)
+        catsCoordinator.start()
     }
     
     override func finish() {}
