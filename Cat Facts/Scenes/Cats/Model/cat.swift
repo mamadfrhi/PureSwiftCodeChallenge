@@ -15,11 +15,11 @@ struct Cat: CatViewDataType, Decodable {
 }
 
 protocol CatViewDataType {
-
+    
     var _id: String { get }
     var text: String { get }
     var createdAt: String { get }
-
+    
 }
 
 struct CatViewData: CatViewDataType {
@@ -33,11 +33,15 @@ struct CatViewData: CatViewDataType {
     }
     
     var createdAt: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY/MM/dd"
-        let date = dateFormatter.date(from: cat.createdAt) ?? Date() // TODO: Not a good idea
-        let dateStr = dateFormatter.string(from: date)
-        return dateStr
+        // iso
+        let isoString = cat.createdAt
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        let isoDate = formatter.date(from: isoString)! // Take care of force unwrapping
+        // normal
+        formatter.dateFormat = "yyyy-MM-dd"
+        let stringDate = formatter.string(from: isoDate)
+        return stringDate
     }
     
     private let cat: Cat
@@ -45,5 +49,5 @@ struct CatViewData: CatViewDataType {
     init(cat: Cat) {
         self.cat = cat
     }
-
+    
 }

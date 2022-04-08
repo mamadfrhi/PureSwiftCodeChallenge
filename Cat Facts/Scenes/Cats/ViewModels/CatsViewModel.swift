@@ -27,16 +27,26 @@ class CatsViewModel {
         // check local db
         // empty -> request for new
         // notEmpty -> show it
-        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
-        self.cats.append(aCat)
+//        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
+//        self.cats.append(aCat)
     }
     
     // MARK: - Network
     func getNewCat() {
         // Use SERVICE class to make request
         // ...
-        serevice.fetchCat()
-        viewDelegate?.updateScreen()
+        serevice.fetchCat {
+            [weak self]
+            (cat, errorMessage) in
+            guard let cat = cat, let sSelf = self else {
+                // show error
+                return
+            }
+            sSelf.cats.append(cat)
+            DispatchQueue.main.async {
+                sSelf.viewDelegate?.updateScreen()
+            }
+        }
     }
 }
 
@@ -52,7 +62,7 @@ extension CatsViewModel: CatsViewModelType {
     
     func itemFor(row: Int) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
-        cell.textLabel?.text = self.cats[row].text
+        cell.textLabel?.text = CatViewData(cat: self.cats[row])._id
         cell.detailTextLabel?.text = CatViewData(cat: self.cats[row]).createdAt
         return cell
     }
