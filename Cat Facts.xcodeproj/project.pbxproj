@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		872E563728004DE500A38C9E /* cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E563628004DE500A38C9E /* cat.swift */; };
+		8736653E2800AA49005EDA25 /* cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736653D2800AA49005EDA25 /* cat.swift */; };
+		873665432800C66B005EDA25 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873665422800C66B005EDA25 /* ProgressHUD.swift */; };
 		874E72A528002A90003F5280 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72A428002A90003F5280 /* ApiClient.swift */; };
 		874E72A928002AF6003F5280 /* CatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72A828002AF6003F5280 /* CatsViewModel.swift */; };
 		874E72AE28002B3A003F5280 /* CatServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72AD28002B3A003F5280 /* CatServices.swift */; };
@@ -22,7 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		872E563628004DE500A38C9E /* cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = cat.swift; path = "Cat Facts/Scenes/Cats/ViewControllers/cat.swift"; sourceTree = SOURCE_ROOT; };
+		8736653D2800AA49005EDA25 /* cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cat.swift; sourceTree = "<group>"; };
+		873665422800C66B005EDA25 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		874E72A428002A90003F5280 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		874E72A828002AF6003F5280 /* CatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsViewModel.swift; sourceTree = "<group>"; };
 		874E72AD28002B3A003F5280 /* CatServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatServices.swift; sourceTree = "<group>"; };
@@ -49,9 +51,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8736653C2800AA41005EDA25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8736653D2800AA49005EDA25 /* cat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		874E72AC28002B31003F5280 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				874E72A428002A90003F5280 /* ApiClient.swift */,
 				874E72AD28002B3A003F5280 /* CatServices.swift */,
 			);
 			path = Services;
@@ -89,7 +100,6 @@
 			children = (
 				87C9BA6128001A9900BBCFEC /* Coordinator.swift */,
 				87C9BA5D28001A8C00BBCFEC /* AppCoordinator.swift */,
-				874E72A428002A90003F5280 /* ApiClient.swift */,
 				87C9BA6428001AA700BBCFEC /* Cats */,
 			);
 			path = Scenes;
@@ -99,21 +109,13 @@
 			isa = PBXGroup;
 			children = (
 				87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */,
-				87C9BA6C28001B3E00BBCFEC /* Models */,
+				8736653C2800AA41005EDA25 /* Model */,
 				87C9BA6E28001B5300BBCFEC /* ViewModels */,
 				87C9BA6F28001B5D00BBCFEC /* ViewControllers */,
 				87C9BA7028001B7600BBCFEC /* Views */,
 				874E72AC28002B31003F5280 /* Services */,
 			);
 			path = Cats;
-			sourceTree = "<group>";
-		};
-		87C9BA6C28001B3E00BBCFEC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				872E563628004DE500A38C9E /* cat.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		87C9BA6E28001B5300BBCFEC /* ViewModels */ = {
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				87C9BA6528001AC400BBCFEC /* Cats.storyboard */,
+				873665422800C66B005EDA25 /* ProgressHUD.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,11 +221,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				872E563728004DE500A38C9E /* cat.swift in Sources */,
+				8736653E2800AA49005EDA25 /* cat.swift in Sources */,
 				874E72AE28002B3A003F5280 /* CatServices.swift in Sources */,
 				87C9BA43280019E000BBCFEC /* AppDelegate.swift in Sources */,
 				87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */,
 				874E72B328002E81003F5280 /* CatsViewController.swift in Sources */,
+				873665432800C66B005EDA25 /* ProgressHUD.swift in Sources */,
 				87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */,
 				874E72A928002AF6003F5280 /* CatsViewModel.swift in Sources */,
 				87C9BA5E28001A8C00BBCFEC /* AppCoordinator.swift in Sources */,
