@@ -8,27 +8,27 @@
 import UIKit
 
 class CatsViewModel {
-
+    
     // MARK: - Delegates
     weak var coordinatorDelegate: CatsCoordinator? // navigate to next
     weak var viewDelegate: CatsViewModelViewDelegate?
-
+    
     // MARK: - Properties
     fileprivate let serevice: CatsServices // save in CoreData
-
+    
     fileprivate var cats: [Cat] = []
-
+    
     // MARK: - Init
     init(service: CatsServices) {
         self.serevice = service
     }
-
+    
     func start() {
         // check local db
         // empty -> request for new
         // notEmpty -> show it
-//        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
-//        self.cats.append(aCat)
+        //        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
+        //        self.cats.append(aCat)
     }
     
     // MARK: - Network
@@ -40,16 +40,28 @@ class CatsViewModel {
         }
         serevice.fetchCat {
             [weak self]
-            (cat, errorMessage) in
-            guard let cat = cat, let sSelf = self else {
-                // show error
+            (cat, error) in
+            guard let sSelf = self else {
                 return
             }
-            sSelf.cats.append(cat)
-            DispatchQueue.main.async {
-                sSelf.viewDelegate?.updateScreen()
-                sSelf.viewDelegate?.hud(show: false)
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    sSelf.viewDelegate?.showError(errorMessage: error.localizedDescription)
+                }
+                return
             }
+            
+            if let cat = cat {
+                sSelf.cats.append(cat)
+                DispatchQueue.main.async {
+                    sSelf.viewDelegate?.updateScreen()
+                    sSelf.viewDelegate?.hud(show: false)
+                }
+                return
+            }
+            sSelf.viewDelegate?.showError(errorMessage: "Some Errors when communicating with the server occured!")
+            
         }
     }
 }
@@ -83,32 +95,33 @@ extension CatsViewModel: CatsViewModelType {
     
 }
 protocol CatsViewModelType {
-
+    
     var viewDelegate: CatsViewModelViewDelegate? { get set }
-
+    
     // Data Source
     func numberOfItems() -> Int
-
+    
     func itemFor(row: Int) -> UITableViewCell // PlaceViewDataType
-
+    
     // Events
     func add()
-
+    
     func delete(text: String)
-
+    
     func didSelectRow(_ row: Int, from controller: UIViewController)
-
+    
 }
 
 protocol CatsViewModelCoordinatorDelegate: class {
-
+    
     func didSelect(cat: Cat, from controller: UIViewController)
     
 }
 
 protocol CatsViewModelViewDelegate: class {
-
+    
     func updateScreen()
     func hud(show: Bool)
+    func showError(errorMessage: String)
     
 }

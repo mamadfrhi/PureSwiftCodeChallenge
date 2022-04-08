@@ -16,18 +16,13 @@ class CatsServices {
         self.apiClient = apiClient
     }
     
-    func fetchCat(completionHandler: @escaping (Cat?, String?) -> ()){ // TODO: can I use an error struct instead of String? ?
+    func fetchCat(completionHandler: @escaping (Cat?, Error?) -> ()){ // TODO: can I use an error struct instead of String? ?
         apiClient.getCat { (result) in
             switch result {
             case .success(let cat):
                 completionHandler(cat, nil)
             case .failure(let error): // TODO: make more concise error handling
-                if let catAPIErrorText = (error as? CatAPIError)?.localizedDescription {
-                    completionHandler(nil, catAPIErrorText)
-                }else {
-                    completionHandler(nil, "There's some problems with the internet")
-                }
-                
+                completionHandler(nil, error)
             }
         }
     }

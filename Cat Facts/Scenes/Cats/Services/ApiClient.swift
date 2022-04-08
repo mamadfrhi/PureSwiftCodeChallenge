@@ -19,19 +19,17 @@ class ApiClient {
         let session = URLSession(configuration: configuration)
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            let clientError = (400...499).contains(httpResponse.statusCode)
+            let serverError = (500...599).contains(httpResponse.statusCode)
+            
             if let error = error {
-                print("Error with fetching cat: \(error)")
-                completionHandler(.failure(CatAPIError.noData))
-            }
-            
-            //            if let httpResponse = response as? HTTPURLResponse,
-            //                  (200...299).contains(httpResponse.statusCode) {
-            //                print("Error with the response, unexpected status code: \(String(describing: response))")
-            //                completionHandler(.failure(CatAPIError.httpsError))
-            //                return
-            //            }
-            
-            if let data = data {
+                completionHandler(.failure(error))
+            } else if clientError {
+                completionHandler(.failure(CatAPIError.clientError))
+            } else if serverError {
+                completionHandler(.failure(CatAPIError.serverError))
+            } else if let data = data {
                 let cat = try? JSONDecoder().decode(Cat.self, from: data)
                 completionHandler(.success(cat))
             }
@@ -41,10 +39,10 @@ class ApiClient {
 }
 
 struct CatAPIError: Error {
-    static let noData = NSError(domain: "Server doesn't response.",
-                                code: 1, userInfo: nil)
-    static let httpsError = NSError(domain: "An HTTPS error occured.",
-                                    code: 1, userInfo: nil)
-    static let serverError = NSError(domain: "There's an error when the app wants to reach the server!",
-                                     code: 1, userInfo: nil)
+    static let noData = NSError(domain: "Server response is not valid.",
+                                code: 0, userInfo: nil)
+    static let clientError = NSError(domain: "A HTTPS client error occured.",
+                                     code: 2, userInfo: nil)
+    static let serverError = NSError(domain: "A HTTPS server error occured.",
+                                     code: 3, userInfo: nil)
 }

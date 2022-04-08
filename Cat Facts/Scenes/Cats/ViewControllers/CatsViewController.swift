@@ -15,11 +15,12 @@ class CatsViewController: UIViewController {
             viewModel.viewDelegate = self
         }
     }
-    let hud = ProgressHUD(title: "Wait please...", theme: .dark)
+    let hud = ProgressHUD(title: "Please wait...", theme: .dark)
     // hud means Heads-up Display
     
     // MARK: - Outlets
-    @IBOutlet weak var catsTableView: UITableView!
+    @IBOutlet weak var tavleViewCats: UITableView!
+    @IBOutlet weak var labelErrorMessage: UILabel!
     
     // MARK: - UIViewController
     override func viewDidLoad() {
@@ -35,8 +36,8 @@ class CatsViewController: UIViewController {
     }
     private
     func setupDelegeates() {
-        catsTableView.delegate = self
-        catsTableView.dataSource = self
+        tavleViewCats.delegate = self
+        tavleViewCats.dataSource = self
     }
 
     // MARK: - Actions
@@ -59,10 +60,17 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - ViewModel Delegate
 extension CatsViewController: CatsViewModelViewDelegate {
     func updateScreen() {
-        catsTableView.reloadData()
+        tavleViewCats.isHidden = false
+        tavleViewCats.reloadData()
     }
     
     func hud(show: Bool) {
         show ? self.hud.show() : self.hud.hide()
+    }
+    
+    func showError(errorMessage: String) {
+        self.hud(show: false)
+        tavleViewCats.isHidden = true
+        self.labelErrorMessage.text = errorMessage
     }
 }
