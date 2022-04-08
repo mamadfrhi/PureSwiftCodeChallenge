@@ -17,26 +17,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HV-iv-1LE">
-                                <rect key="frame" x="135" y="389" width="145" height="119"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="First Page"/>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oD0-fg-3TG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bTV-qy-MPy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8HV-iv-1LE" firstAttribute="leading" secondItem="bTV-qy-MPy" secondAttribute="leading" constant="135" id="2KS-uT-PpB"/>
-                            <constraint firstItem="bTV-qy-MPy" firstAttribute="trailing" secondItem="8HV-iv-1LE" secondAttribute="trailing" constant="134" id="6b6-yn-2jc"/>
-                            <constraint firstItem="bTV-qy-MPy" firstAttribute="bottom" secondItem="8HV-iv-1LE" secondAttribute="bottom" constant="354" id="SoC-ZH-K9H"/>
-                            <constraint firstItem="8HV-iv-1LE" firstAttribute="top" secondItem="bTV-qy-MPy" secondAttribute="top" constant="345" id="n4P-gZ-BKs"/>
+                            <constraint firstItem="oD0-fg-3TG" firstAttribute="bottom" secondItem="bTV-qy-MPy" secondAttribute="bottom" id="Pe0-Wd-XXf"/>
+                            <constraint firstItem="oD0-fg-3TG" firstAttribute="leading" secondItem="bTV-qy-MPy" secondAttribute="leading" id="UXD-tr-Zhi"/>
+                            <constraint firstItem="oD0-fg-3TG" firstAttribute="top" secondItem="bTV-qy-MPy" secondAttribute="top" id="eDe-7p-wiA"/>
+                            <constraint firstItem="oD0-fg-3TG" firstAttribute="trailing" secondItem="bTV-qy-MPy" secondAttribute="trailing" id="khu-hk-YSa"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="BeN-vZ-MOA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bWD-yj-l0y">
+                            <connections>
+                                <action selector="add:" destination="cZy-lz-ZEZ" id="vCo-qK-rrh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="catsTableView" destination="oD0-fg-3TG" id="CwR-n5-a7u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fU-uG-xDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-71.014492753623188" y="62.946428571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9YF-QE-ghq">
+            <objects>
+                <navigationController id="NCf-qa-BVH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M4b-Xz-Vr1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cZy-lz-ZEZ" kind="relationship" relationship="rootViewController" id="5M6-yt-nqk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3t3-UO-W4t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-828" y="63"/>
         </scene>
     </scenes>
     <resources>

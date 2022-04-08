@@ -54,14 +54,18 @@ extension CatsCoordinator {
 //        viewController.viewModel = locationSearchViewModel
 //        controller.present(viewController, animated: true, completion: nil)
 //    }
+    
+    func goToCatDetails() {
+        print("I can transfer you to cat detail")
+    }
 }
 // MARK: - Coordinator Callback's
-extension CatsCoordinator//: SearchCoordinatorDelegate
+extension CatsCoordinator: CatsViewModelCoordinatorDelegate
 {
-    //    func didFinish(from coordinator: SearchCoordinator) {
-    //        removeChildCoordinator(coordinator)
-    //    }
-    
+    func didSelect(cat: Cat, from controller: UIViewController) {
+        print("I'm in CatsCoordinator and user selected \(cat)")
+        self.goToCatDetails()
+    }
 }
 
 // MARK: - ViewModel Callback's
