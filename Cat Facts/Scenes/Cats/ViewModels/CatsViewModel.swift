@@ -16,7 +16,7 @@ class CatsViewModel {
     // MARK: - Properties
     fileprivate let serevice: CatsServices // save in CoreData
 
-    fileprivate var cats: [Cat] = [Cat(text: "good cat", createdAt: Date())]
+    fileprivate var cats: [Cat] = []
 
     // MARK: - Init
     init(service: CatsServices) {
@@ -27,13 +27,15 @@ class CatsViewModel {
         // check local db
         // empty -> request for new
         // notEmpty -> show it
+        let aCat = Cat(id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
+        self.cats.append(aCat)
     }
     
     // MARK: - Network
     func getNewCat(text: String) {
         // Use SERVICE class to make request
         // ...
-        self.cats = [Cat(text: "mamad", createdAt: Date())]
+        add()
         viewDelegate?.updateScreen()
     }
 }
@@ -51,12 +53,15 @@ extension CatsViewModel: CatsViewModelType {
     func itemFor(row: Int) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
         cell.textLabel?.text = self.cats[row].text
-        cell.detailTextLabel?.text = DateFormatter().string(from: self.cats[row].createdAt)
+        cell.detailTextLabel?.text = CatViewData(cat: self.cats[row]).createdAt
         return cell
     }
     
     func add() {
         print("To add a new cat")
+        let aCat = Cat(id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
+        self.cats.append(aCat)
+        viewDelegate?.updateScreen()
     }
     
     func delete(text: String) {
