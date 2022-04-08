@@ -15,6 +15,7 @@ class CatsViewController: UIViewController {
             viewModel.viewDelegate = self
         }
     }
+    let progress = ProgressHUD(title: "Wait please...", theme: .dark)
     
     // MARK: - Outlets
     @IBOutlet weak var catsTableView: UITableView!
@@ -29,6 +30,11 @@ class CatsViewController: UIViewController {
     // MARK: - Setup
     func setup() {
         self.title = viewModel.titleText
+        setupDelegeates()
+        [progress].forEach(view.addSubview(_:))
+    }
+    private
+    func setupDelegeates() {
         catsTableView.delegate = self
         catsTableView.dataSource = self
     }
