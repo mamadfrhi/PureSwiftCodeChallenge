@@ -8,11 +8,22 @@
 import Foundation
 
 class CatsServices {
-    // TODO: APIClient must be abstract not a concrete type
+
     let apiClient: ApiClient
-    var coordinateDelegate: Coordinator?
-    
+
+    // MARK: - Init
     init(apiClient: ApiClient) {
         self.apiClient = apiClient
+    }
+    
+    func fetchCat() {
+        apiClient.getCat { (result) in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

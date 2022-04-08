@@ -8,15 +8,15 @@
 import Foundation
 
 
-struct Cat: CatViewDataType {
-    var id: String
+struct Cat: CatViewDataType, Decodable {
+    var _id: String
     let text: String
     let createdAt: String
 }
 
 protocol CatViewDataType {
 
-    var id: String { get }
+    var _id: String { get }
     var text: String { get }
     var createdAt: String { get }
 
@@ -24,8 +24,8 @@ protocol CatViewDataType {
 
 struct CatViewData: CatViewDataType {
     
-    var id: String {
-        return cat.id
+    var _id: String {
+        return cat._id
     }
     
     var text: String {

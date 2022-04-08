@@ -27,15 +27,15 @@ class CatsViewModel {
         // check local db
         // empty -> request for new
         // notEmpty -> show it
-        let aCat = Cat(id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
+        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
         self.cats.append(aCat)
     }
     
     // MARK: - Network
-    func getNewCat(text: String) {
+    func getNewCat() {
         // Use SERVICE class to make request
         // ...
-        add()
+        serevice.fetchCat()
         viewDelegate?.updateScreen()
     }
 }
@@ -59,8 +59,7 @@ extension CatsViewModel: CatsViewModelType {
     
     func add() {
         print("To add a new cat")
-        let aCat = Cat(id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
-        self.cats.append(aCat)
+        getNewCat()
         viewDelegate?.updateScreen()
     }
     
