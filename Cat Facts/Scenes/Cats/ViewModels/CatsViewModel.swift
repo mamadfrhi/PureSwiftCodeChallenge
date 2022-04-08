@@ -35,6 +35,9 @@ class CatsViewModel {
     func getNewCat() {
         // Use SERVICE class to make request
         // ...
+        DispatchQueue.main.async {
+            self.viewDelegate?.hud(show: true)
+        }
         serevice.fetchCat {
             [weak self]
             (cat, errorMessage) in
@@ -45,6 +48,7 @@ class CatsViewModel {
             sSelf.cats.append(cat)
             DispatchQueue.main.async {
                 sSelf.viewDelegate?.updateScreen()
+                sSelf.viewDelegate?.hud(show: false)
             }
         }
     }
@@ -105,5 +109,6 @@ protocol CatsViewModelCoordinatorDelegate: class {
 protocol CatsViewModelViewDelegate: class {
 
     func updateScreen()
+    func hud(show: Bool)
     
 }

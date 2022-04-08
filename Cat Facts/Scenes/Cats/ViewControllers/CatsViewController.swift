@@ -15,7 +15,8 @@ class CatsViewController: UIViewController {
             viewModel.viewDelegate = self
         }
     }
-    let progress = ProgressHUD(title: "Wait please...", theme: .dark)
+    let hud = ProgressHUD(title: "Wait please...", theme: .dark)
+    // hud means Heads-up Display
     
     // MARK: - Outlets
     @IBOutlet weak var catsTableView: UITableView!
@@ -30,7 +31,7 @@ class CatsViewController: UIViewController {
     // MARK: - Setup
     func setup() {
         setupDelegeates()
-        [progress].forEach(view.addSubview(_:))
+        [hud].forEach(view.addSubview(_:))
     }
     private
     func setupDelegeates() {
@@ -59,5 +60,9 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
 extension CatsViewController: CatsViewModelViewDelegate {
     func updateScreen() {
         catsTableView.reloadData()
+    }
+    
+    func hud(show: Bool) {
+        show ? self.hud.show() : self.hud.hide()
     }
 }
