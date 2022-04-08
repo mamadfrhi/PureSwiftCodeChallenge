@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		87C9BA43280019E000BBCFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA42280019E000BBCFEC /* AppDelegate.swift */; };
-		87C9BA45280019E000BBCFEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA44280019E000BBCFEC /* SceneDelegate.swift */; };
-		87C9BA47280019E000BBCFEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA46280019E000BBCFEC /* ViewController.swift */; };
-		87C9BA4A280019E000BBCFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C9BA48280019E000BBCFEC /* Main.storyboard */; };
 		87C9BA4D280019E000BBCFEC /* Cat_Facts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA4B280019E000BBCFEC /* Cat_Facts.xcdatamodeld */; };
 		87C9BA4F280019E200BBCFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C9BA4E280019E200BBCFEC /* Assets.xcassets */; };
-		87C9BA52280019E200BBCFEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C9BA50280019E200BBCFEC /* LaunchScreen.storyboard */; };
+		87C9BA5E28001A8C00BBCFEC /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA5D28001A8C00BBCFEC /* AppCoordinator.swift */; };
+		87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA6128001A9900BBCFEC /* Coordinator.swift */; };
+		87C9BA6628001AC400BBCFEC /* Cats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C9BA6528001AC400BBCFEC /* Cats.storyboard */; };
+		87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		87C9BA3F280019E000BBCFEC /* Cat Facts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cat Facts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C9BA42280019E000BBCFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87C9BA44280019E000BBCFEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		87C9BA46280019E000BBCFEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		87C9BA49280019E000BBCFEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87C9BA4C280019E000BBCFEC /* Cat_Facts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cat_Facts.xcdatamodel; sourceTree = "<group>"; };
 		87C9BA4E280019E200BBCFEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		87C9BA51280019E200BBCFEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87C9BA53280019E200BBCFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87C9BA5D28001A8C00BBCFEC /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		87C9BA6128001A9900BBCFEC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		87C9BA6528001AC400BBCFEC /* Cats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cats.storyboard; sourceTree = "<group>"; };
+		87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +59,71 @@
 			isa = PBXGroup;
 			children = (
 				87C9BA42280019E000BBCFEC /* AppDelegate.swift */,
-				87C9BA44280019E000BBCFEC /* SceneDelegate.swift */,
-				87C9BA46280019E000BBCFEC /* ViewController.swift */,
-				87C9BA48280019E000BBCFEC /* Main.storyboard */,
-				87C9BA4E280019E200BBCFEC /* Assets.xcassets */,
-				87C9BA50280019E200BBCFEC /* LaunchScreen.storyboard */,
-				87C9BA53280019E200BBCFEC /* Info.plist */,
 				87C9BA4B280019E000BBCFEC /* Cat_Facts.xcdatamodeld */,
+				87C9BA5C28001A6800BBCFEC /* Scenes */,
+				87C9BA7128001C6700BBCFEC /* Resources */,
 			);
 			path = "Cat Facts";
+			sourceTree = "<group>";
+		};
+		87C9BA5C28001A6800BBCFEC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				87C9BA6128001A9900BBCFEC /* Coordinator.swift */,
+				87C9BA5D28001A8C00BBCFEC /* AppCoordinator.swift */,
+				87C9BA6428001AA700BBCFEC /* Cats */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		87C9BA6428001AA700BBCFEC /* Cats */ = {
+			isa = PBXGroup;
+			children = (
+				87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */,
+				87C9BA6C28001B3E00BBCFEC /* Models */,
+				87C9BA6E28001B5300BBCFEC /* ViewModels */,
+				87C9BA6F28001B5D00BBCFEC /* ViewControllers */,
+				87C9BA7028001B7600BBCFEC /* Views */,
+			);
+			path = Cats;
+			sourceTree = "<group>";
+		};
+		87C9BA6C28001B3E00BBCFEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		87C9BA6E28001B5300BBCFEC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		87C9BA6F28001B5D00BBCFEC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		87C9BA7028001B7600BBCFEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87C9BA6528001AC400BBCFEC /* Cats.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87C9BA7128001C6700BBCFEC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				87C9BA4E280019E200BBCFEC /* Assets.xcassets */,
+				87C9BA53280019E200BBCFEC /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,9 +183,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87C9BA52280019E200BBCFEC /* LaunchScreen.storyboard in Resources */,
+				87C9BA6628001AC400BBCFEC /* Cats.storyboard in Resources */,
 				87C9BA4F280019E200BBCFEC /* Assets.xcassets in Resources */,
-				87C9BA4A280019E000BBCFEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,33 +195,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87C9BA47280019E000BBCFEC /* ViewController.swift in Sources */,
 				87C9BA43280019E000BBCFEC /* AppDelegate.swift in Sources */,
+				87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */,
+				87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */,
+				87C9BA5E28001A8C00BBCFEC /* AppCoordinator.swift in Sources */,
 				87C9BA4D280019E000BBCFEC /* Cat_Facts.xcdatamodeld in Sources */,
-				87C9BA45280019E000BBCFEC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		87C9BA48280019E000BBCFEC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				87C9BA49280019E000BBCFEC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		87C9BA50280019E200BBCFEC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				87C9BA51280019E200BBCFEC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		87C9BA54280019E200BBCFEC /* Debug */ = {
@@ -292,7 +329,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GB4GGS54M;
-				INFOPLIST_FILE = "Cat Facts/Info.plist";
+				INFOPLIST_FILE = "Cat Facts/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabok.mohammadfarrahi.Cat-Facts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -311,7 +349,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GB4GGS54M;
-				INFOPLIST_FILE = "Cat Facts/Info.plist";
+				INFOPLIST_FILE = "Cat Facts/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,7 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabok.mohammadfarrahi.Cat-Facts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
