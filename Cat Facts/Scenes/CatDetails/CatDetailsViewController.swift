@@ -44,10 +44,11 @@ class CatDetailsViewController: UIViewController {
 extension CatDetailsViewController {
     func deleCatFromLocal() {
         guard let catsVC = self.catsVC as? CatsViewController,
-              let id = self.cat?._id else {
+              let cat = self.cat else {
             return
         }
-        catsVC.viewModel.delete(cat: cat!)
+        catsVC.viewModel.delete(cat: cat)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 // it would be great to change this class to an independet module
