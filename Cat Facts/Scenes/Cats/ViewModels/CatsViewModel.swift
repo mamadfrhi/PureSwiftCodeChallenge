@@ -17,14 +17,7 @@ class CatsViewModel {
     // MARK: - Properties
     fileprivate let service: CatsServices // save in CoreData
     
-    fileprivate var cats: [Cat] = [] {
-        willSet {
-            if newValue.count == 1 {
-                // if an element appended, so save it locally
-                self.saveNewCat(cat: newValue[0])
-            }
-        }
-    }
+    fileprivate var cats: [Cat] = []
     fileprivate var catsNSManagedObjects: [NSManagedObject]?
     
     // MARK: - Init
@@ -69,6 +62,7 @@ class CatsViewModel {
             
             if let cat = cat {
                 sSelf.cats.append(cat)
+                sSelf.saveNewCat(cat: cat)
                 DispatchQueue.main.async {
                     sSelf.viewDelegate?.updateScreen()
                     sSelf.viewDelegate?.hud(show: false)

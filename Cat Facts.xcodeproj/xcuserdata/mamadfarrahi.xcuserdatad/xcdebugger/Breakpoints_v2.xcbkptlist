@@ -7,15 +7,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9BCC0CC9-F9F2-44D5-9555-14F7D9A84368"
+            uuid = "7B1AC307-CAEA-45A0-BA68-4571DB5DAA8B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cat Facts/Scenes/Cats/ViewModels/CatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "remove(cat:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7B1AC307-CAEA-45A0-BA68-4571DB5DAA8B - 227355c02d64c3d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Cat_Facts.CatsViewModel.remove(cat: Cat_Facts.Cat) -&gt; ()"
+                  moduleName = "Cat Facts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mamadfarrahi/Desktop/Cat%20Facts%202/Cat%20Facts/Scenes/Cats/ViewModels/CatsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "7B1AC307-CAEA-45A0-BA68-4571DB5DAA8B - e37076cf39492ace"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Cat_Facts.CatsViewModel.remove(cat: Cat_Facts.Cat) -&gt; ()"
+                  moduleName = "Cat Facts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mamadfarrahi/Desktop/Cat%20Facts%202/Cat%20Facts/Scenes/Cats/ViewModels/CatsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "87">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B1AC02E-712A-4889-8A6B-091FE1833AB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cat Facts/Scenes/Cats/ViewModels/CatsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,17 +71,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0C15A6B3-119D-48A1-80D8-D71C6943B69F"
+            uuid = "31EDD49A-A301-483F-A638-A5A50630D0E5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cat Facts/Scenes/Cats/ViewModels/CatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "cats"
-            landmarkType = "24">
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "remove(cat:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
