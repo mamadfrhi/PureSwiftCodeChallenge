@@ -57,8 +57,8 @@ class CatsViewModel {
             }
             
             if let cat = cat {
-                sSelf.saveNewCat(cat: cat)
                 DispatchQueue.main.async {
+                    sSelf.saveNewCat(cat: cat)
                     sSelf.viewDelegate?.updateScreen()
                     sSelf.viewDelegate?.hud(show: false)
                 }
