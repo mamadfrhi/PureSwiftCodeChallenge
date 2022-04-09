@@ -7,18 +7,27 @@
 
 import CoreData
 
-struct CatCoreDataConvertor {
+class CatCoreDataConvertor {
     
     func giveMeCats(from catsNSManagedObjects: [NSManagedObject]) -> [Cat] {
         var cats : [Cat] = []
         for nsManagedObj in catsNSManagedObjects {
-            let id = String(describing: nsManagedObj.value(forKey: "id"))
-            let text = String(describing: nsManagedObj.value(forKey: "text"))
-            let createdAt = String(describing: nsManagedObj.value(forKey: "createdAt"))
-            
-            let cat = Cat(_id: id, text: text, createdAt: createdAt)
-            
-            cats.append(cat)
+            if let id = nsManagedObj.value(forKey: "id"),
+               let text = nsManagedObj.value(forKey: "text"),
+               let createdAtObj = nsManagedObj.value(forKey: "createdAt") {
+                
+                let id = "\(id)"
+                let text = "\(text)"
+                let cratedAt = "\(createdAtObj)"
+                
+                
+                let cat = Cat(_id: id,
+                              text: text,
+                              createdAt: cratedAt)
+                
+                
+                cats.append(cat)
+            }
         }
         return cats
     }
