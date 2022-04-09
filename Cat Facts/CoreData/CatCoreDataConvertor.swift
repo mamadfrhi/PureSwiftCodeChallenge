@@ -7,13 +7,9 @@
 
 import CoreData
 
-protocol CatNSObjectWrapperType {
-    var catsNSManagedObjects: [NSManagedObject] { get }
-    var cats: [Cat]? { get }
-}
-
-struct CatNSManagedObjectWrapper: CatNSObjectWrapperType {
-    var cats: [Cat]? {
+struct CatCoreDataConvertor {
+    
+    func giveMeCats(from catsNSManagedObjects: [NSManagedObject]) -> [Cat] {
         var cats : [Cat] = []
         for nsManagedObj in catsNSManagedObjects {
             let id = String(describing: nsManagedObj.value(forKey: "id"))
@@ -25,11 +21,5 @@ struct CatNSManagedObjectWrapper: CatNSObjectWrapperType {
             cats.append(cat)
         }
         return cats
-    }
-    
-    var catsNSManagedObjects: [NSManagedObject]
-    
-    init(catsNSObjects: [NSManagedObject]) {
-        self.catsNSManagedObjects = catsNSObjects
     }
 }

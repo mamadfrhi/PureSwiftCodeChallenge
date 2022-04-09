@@ -47,7 +47,7 @@ extension CatDetailsViewController {
               let id = self.cat?._id else {
             return
         }
-        catsVC.viewModel.delete(text: id)
+        catsVC.viewModel.delete(cat: cat!)
     }
 }
 // it would be great to change this class to an independet module

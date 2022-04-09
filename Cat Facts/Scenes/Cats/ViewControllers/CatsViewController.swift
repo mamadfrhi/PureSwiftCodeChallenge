@@ -64,6 +64,10 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - ViewModel Delegate
 extension CatsViewController: CatsViewModelViewDelegate {
+    func selectedCatIndex() -> Int {
+        self.tavleViewCats.indexPathForSelectedRow?.row ?? 0
+    }
+    
     func updateScreen() {
         tavleViewCats.isHidden = false
         tavleViewCats.reloadData()

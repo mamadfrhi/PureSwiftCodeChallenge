@@ -18,10 +18,14 @@ class CatsViewModel {
     fileprivate let service: CatsServices // save in CoreData
     
     fileprivate var cats: [Cat] = [] {
-        didSet {
-            self.saveNewCat(cat: cats[cats.count-1])
+        willSet {
+            if newValue.count == 1 {
+                // if an element appended, so save it locally
+                self.saveNewCat(cat: newValue[0])
+            }
         }
     }
+    fileprivate var catsNSManagedObjects: [NSManagedObject]?
     
     // MARK: - Init
     init(service: CatsServices) {
@@ -29,20 +33,15 @@ class CatsViewModel {
     }
     
     func start() {
-        // check local db
-        // empty -> request for new
-        // notEmpty -> show it
-        //        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
-        //        self.cats.append(aCat)
-        
         service.fetchLocalCats {
             [weak self]
-            (cats, error) in
-            guard let sSelf = self else {
+            (catsNSObjectArray, error) in
+            guard let sSelf = self,
+                  let catsNSObjectArray = catsNSObjectArray as? [NSManagedObject] else {
                 return
             }
-            
-            let cats = CatNSManagedObjectWrapper(catsNSObjects: cats as! [NSManagedObject]).cats!
+            sSelf.catsNSManagedObjects = catsNSObjectArray
+            let cats = CatCoreDataConvertor().giveMeCats(from: catsNSObjectArray)
             sSelf.cats = cats
         }
     }
@@ -100,6 +99,29 @@ class CatsViewModel {
             // show success
         }
     }
+    func remove(cat: Cat) {
+        // convert cat to nsManagedObject
+        let indexToRemove = viewDelegate!.selectedCatIndex() // Take care of force unwrap
+        guard let catNSManagedObj = self.catsNSManagedObjects?[indexToRemove] else { return }
+        service.delete(cat: catNSManagedObj) {
+            [weak self]
+            (deleted, error) in
+            guard let sSelf = self else { return }
+            if let error = error {
+                DispatchQueue.main.async {
+                    sSelf.viewDelegate?.showError(errorMessage: error.localizedDescription)
+                }
+                return
+            }
+            
+            if deleted {
+                sSelf.catsNSManagedObjects?.remove(at: indexToRemove)
+                sSelf.cats.remove(at: indexToRemove)
+                sSelf.viewDelegate?.updateScreen()
+            }
+        }
+        
+    }
 }
 
 // MARK: - ViewModelType
@@ -123,8 +145,9 @@ extension CatsViewModel: CatsViewModelType {
         viewDelegate?.updateScreen()
     }
     
-    func delete(text: String) {
-        print("Delete \(text) cat")
+    func delete(cat: Cat) {
+        print("Delete \(cat) cat")
+        self.remove(cat: cat)
     }
     
     func didSelectRow(_ row: Int, from controller: UIViewController) {
@@ -145,7 +168,7 @@ protocol CatsViewModelType {
     // Events
     func add()
     
-    func delete(text: String)
+    func delete(cat: Cat)
     
     func didSelectRow(_ row: Int, from controller: UIViewController)
     
@@ -168,4 +191,5 @@ protocol CatsViewModelViewDelegate: class {
     func updateScreen()
     func hud(show: Bool)
     func showError(errorMessage: String)
+    func selectedCatIndex() -> Int
 }

@@ -5,7 +5,7 @@
 //  Created by iMamad on 4/8/22.
 //
 
-import Foundation
+import CoreData
 
 class CatsServices {
     
@@ -49,12 +49,24 @@ extension CatsServices {
         coreDataManager.fetch { (result) in
             switch result {
             case .success(let cats):
-                print(cats)
                 completionHandler(cats, nil)
             case .failure(let error):
-                print(error)
                 completionHandler(nil, error)
             }
         }
     }
+    
+    func delete(cat: NSManagedObject, completionHandler: @escaping (Bool, Error?) -> ()) {
+        coreDataManager.delete(object: cat) { (result) in
+            switch result {
+            case .success(_):
+                completionHandler(true, nil)
+            case .failure(let error):
+                completionHandler(false, error)
+            }
+        }
+    }
 }
+
+// TODO: write protcols for CoreData & API
+// like networkable &

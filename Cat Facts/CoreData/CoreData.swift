@@ -10,7 +10,7 @@ import UIKit
 
 protocol LocalCRUD { // it can be named CoreDataActions too
     func save(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
-    func delete(object: Any, completion: @escaping (Result<Bool, Error>) -> ())
+    func delete(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func fetch(completion: @escaping (Result<[Any], Error>) -> ())
 }
 
@@ -58,14 +58,31 @@ class CoreDataManager: LocalCRUD {
         }
     }
     
-    func delete(object: Any, completion: @escaping (Result<Bool, Error>) -> ()) {
-        print("I'm in core data class")
+    func delete(object: Any?, completion: (Result<Bool, Error>) -> ()) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            completion(.failure(CoreDataError.noAppDelegate))
+            return
+        }
+        
+        guard let nsManagedObject = object as? NSManagedObject else {
+            completion(.failure(CoreDataError.coreDataDelete))
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(nsManagedObject)
+        do {
+            try managedContext.save()
+            completion(.success(true))
+        } catch {
+            completion(.failure(error))
+        }
     }
     
 }
 struct CoreDataError {
     static let noAppDelegate = NSError(domain: "No App Delegate", code: 1, userInfo: nil)
     static let coreDataSave = NSError(domain: "Something wrong happened while saving the cat locally.", code: 1, userInfo: nil)
+    static let coreDataDelete = NSError(domain: "Something wrong happened while deleting the cat locally.", code: 1, userInfo: nil)
 }
 
 
