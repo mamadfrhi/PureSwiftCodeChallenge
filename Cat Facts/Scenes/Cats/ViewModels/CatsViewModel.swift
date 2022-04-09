@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CatsViewModel {
     
@@ -14,7 +15,7 @@ class CatsViewModel {
     weak var viewDelegate: CatsViewModelViewDelegate?
     
     // MARK: - Properties
-    fileprivate let serevice: CatsServices // save in CoreData
+    fileprivate let service: CatsServices // save in CoreData
     
     fileprivate var cats: [Cat] = [] {
         didSet {
@@ -24,7 +25,7 @@ class CatsViewModel {
     
     // MARK: - Init
     init(service: CatsServices) {
-        self.serevice = service
+        self.service = service
     }
     
     func start() {
@@ -33,6 +34,17 @@ class CatsViewModel {
         // notEmpty -> show it
         //        let aCat = Cat(_id: "800", text: "a good cat", createdAt: DateFormatter().string(from: Date()))
         //        self.cats.append(aCat)
+        
+        service.fetchLocalCats {
+            [weak self]
+            (cats, error) in
+            guard let sSelf = self else {
+                return
+            }
+            
+            let cats = CatNSManagedObjectWrapper(catsNSObjects: cats as! [NSManagedObject]).cats!
+            sSelf.cats = cats
+        }
     }
     
     // MARK: - Network
@@ -42,7 +54,7 @@ class CatsViewModel {
         DispatchQueue.main.async {
             self.viewDelegate?.hud(show: true)
         }
-        serevice.fetchCat {
+        service.fetchCat {
             [weak self]
             (cat, error) in
             guard let sSelf = self else {
@@ -71,7 +83,7 @@ class CatsViewModel {
     
     // MARK: - Core Data
     func saveNewCat(cat: Cat) {
-        serevice.saveCat(cat: cat) {
+        service.saveCat(cat: cat) {
             [weak self]
             (error) in
             guard let sSelf = self else {
@@ -99,8 +111,9 @@ extension CatsViewModel: CatsViewModelType {
     
     func itemFor(row: Int) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
-        cell.textLabel?.text = CatViewData(cat: self.cats[row])._id
-        cell.detailTextLabel?.text = CatViewData(cat: self.cats[row]).createdAt
+        let catViewData = CatViewData(cat: self.cats[row])
+        cell.textLabel?.text = catViewData._id
+        cell.detailTextLabel?.text = catViewData.createdAt
         return cell
     }
     
