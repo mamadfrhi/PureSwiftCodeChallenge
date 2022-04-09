@@ -38,7 +38,8 @@ class AppCoordinator: Coordinator {
         
         // show Cats.storyboard as the beginning of the app
         let catsCoordinator = CatsCoordinator(rootNavigationViewController: self.rootViewController,
-                                              apiClient: self.apiClient)
+                                              apiClient: self.apiClient,
+                                              coreDataManager: CoreDataManager())
         catsCoordinator.start()
     }
     

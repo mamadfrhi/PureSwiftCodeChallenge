@@ -19,20 +19,24 @@ class CatsCoordinator: Coordinator {
     let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
     
     let apiClient: ApiClient
+    let coreDataManager: LocalCRUD
     
     // MARK: VM / VC's
     
     var catsViewModel: CatsViewModel {
-        let catsService = CatsServices(apiClient: apiClient)
+        let catsService = CatsServices(apiClient: apiClient, coreDataManager: coreDataManager)
         let viewModel = CatsViewModel(service: catsService)
         viewModel.coordinatorDelegate = self
         return viewModel
     }
     
     // MARK: - Coordinator
-    init(rootNavigationViewController: UINavigationController, apiClient: ApiClient) {
+    init(rootNavigationViewController: UINavigationController,
+         apiClient: ApiClient,
+         coreDataManager: LocalCRUD) {
         self.rootNavigationController = rootNavigationViewController
         self.apiClient = apiClient
+        self.coreDataManager = coreDataManager
     }
     
     override func start() {
