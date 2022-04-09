@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CatDetailViewController: UIViewController {
+class CatDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,7 +10,7 @@ import UIKit
 class CatsViewModel {
     
     // MARK: - Delegates
-    weak var coordinatorDelegate: CatsCoordinator? // navigate to next
+    var coordinatorDelegate: CatsCoordinator? // navigate to next
     weak var viewDelegate: CatsViewModelViewDelegate?
     
     // MARK: - Properties
@@ -66,6 +66,7 @@ class CatsViewModel {
     }
 }
 
+// MARK: - ViewModelType
 extension CatsViewModel: CatsViewModelType {
     
     func numberOfItems() -> Int {
@@ -90,7 +91,8 @@ extension CatsViewModel: CatsViewModelType {
     }
     
     func didSelectRow(_ row: Int, from controller: UIViewController) {
-        print("Cat in \(row) selecte")
+        print("Cat in \(row) selected")
+        didSelect(cat: cats[row], from: controller)
     }
     
 }
@@ -112,16 +114,21 @@ protocol CatsViewModelType {
     
 }
 
+// MARK: - ViewModelCoordinator
 protocol CatsViewModelCoordinatorDelegate: class {
-    
     func didSelect(cat: Cat, from controller: UIViewController)
-    
+}
+extension CatsViewModel: CatsViewModelCoordinatorDelegate {
+    func didSelect(cat: Cat, from controller: UIViewController) {
+        coordinatorDelegate?.didSelect(cat: cat,
+                                       from: controller)
+        // It'll open CatDetail VC
+    }
 }
 
+// MARK: - ViewModelViewDelegate
 protocol CatsViewModelViewDelegate: class {
-    
     func updateScreen()
     func hud(show: Bool)
     func showError(errorMessage: String)
-    
 }

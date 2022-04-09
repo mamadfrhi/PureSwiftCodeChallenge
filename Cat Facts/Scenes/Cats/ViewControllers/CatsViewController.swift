@@ -55,6 +55,11 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         viewModel.itemFor(row: indexPath.item)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRow(indexPath.row,
+                               from: self)
+    }
 }
 
 // MARK: - ViewModel Delegate
