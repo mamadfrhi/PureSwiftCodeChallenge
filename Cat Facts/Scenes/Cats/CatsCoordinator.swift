@@ -55,6 +55,7 @@ extension CatsCoordinator {
         let catDetailsVC = self.catDetailsStoryboard.instantiateViewController(withIdentifier: "CatDetails") as! CatDetailsViewController
         self.rootNavigationController.pushViewController(catDetailsVC,
                                                          animated: true)
+        catDetailsVC.cat = cat
     }
 }
 // MARK: - Coordinator Callback's
