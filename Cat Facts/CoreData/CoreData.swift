@@ -21,7 +21,7 @@ class CoreDataManager: LocalCRUD {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Task")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Cat")
         
         do {
             let result = try managedContext.fetch(fetchRequest)
