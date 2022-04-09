@@ -41,17 +41,13 @@ class CatsViewModel {
     
     // MARK: - Network
     func getNewCat() {
-        // Use SERVICE class to make request
-        // ...
         DispatchQueue.main.async {
             self.viewDelegate?.hud(show: true)
         }
         service.fetchCat {
             [weak self]
             (cat, error) in
-            guard let sSelf = self else {
-                return
-            }
+            guard let sSelf = self else { return }
             
             if let error = error {
                 DispatchQueue.main.async {
@@ -61,7 +57,6 @@ class CatsViewModel {
             }
             
             if let cat = cat {
-                sSelf.cats.append(cat)
                 sSelf.saveNewCat(cat: cat)
                 DispatchQueue.main.async {
                     sSelf.viewDelegate?.updateScreen()
@@ -79,9 +74,7 @@ class CatsViewModel {
         service.saveCat(cat: cat) {
             [weak self]
             (error) in
-            guard let sSelf = self else {
-                return
-            }
+            guard let sSelf = self else { return }
             
             if let error = error {
                 DispatchQueue.main.async {
@@ -90,7 +83,7 @@ class CatsViewModel {
                 return
             }
             
-            // show success
+            sSelf.start() // to refresh arrays
         }
     }
     func remove(cat: Cat) {
@@ -109,8 +102,7 @@ class CatsViewModel {
             }
             
             if deleted {
-                sSelf.catsNSManagedObjects?.remove(at: indexToRemove)
-                sSelf.cats.remove(at: indexToRemove)
+                sSelf.start() // to refresh arrays
                 sSelf.viewDelegate?.updateScreen()
             }
         }
