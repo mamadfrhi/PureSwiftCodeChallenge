@@ -37,11 +37,13 @@ struct CatViewData: CatViewDataType {
         let isoString = cat.createdAt
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        let isoDate = formatter.date(from: isoString)! // TODO: Take care of force unwrapping
-        // normal
-        formatter.dateFormat = "yyyy-MM-dd"
-        let stringDate = formatter.string(from: isoDate)
-        return stringDate
+        if let isoDate = formatter.date(from: isoString) {
+            // normal
+            formatter.dateFormat = "yyyy-MM-dd"
+            let stringDate = formatter.string(from: isoDate)
+            return stringDate
+        }
+        return formatter.string(from: Date()) // default date is today
     }
     
     private let cat: Cat
