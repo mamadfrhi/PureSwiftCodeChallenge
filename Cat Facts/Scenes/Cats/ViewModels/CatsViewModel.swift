@@ -16,7 +16,11 @@ class CatsViewModel {
     // MARK: - Properties
     fileprivate let serevice: CatsServices // save in CoreData
     
-    fileprivate var cats: [Cat] = []
+    fileprivate var cats: [Cat] = [] {
+        didSet {
+            self.saveNewCat(cat: cats[cats.count-1])
+        }
+    }
     
     // MARK: - Init
     init(service: CatsServices) {
@@ -62,6 +66,26 @@ class CatsViewModel {
             }
             sSelf.viewDelegate?.showError(errorMessage: "Some Errors when communicating with the server occured!")
             
+        }
+    }
+    
+    // MARK: - Core Data
+    func saveNewCat(cat: Cat) {
+        serevice.saveCat(cat: cat) {
+            [weak self]
+            (error) in
+            guard let sSelf = self else {
+                return
+            }
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    sSelf.viewDelegate?.showError(errorMessage: error.localizedDescription)
+                }
+                return
+            }
+            
+            // show success
         }
     }
 }
