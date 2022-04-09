@@ -11,6 +11,7 @@ class CatDetailsViewController: UIViewController {
     
     // MARK: - Properties
     var cat: Cat?
+    weak var catsVC: UIViewController?
     
     // MARK: - Outlets
     @IBOutlet weak var factLabel: UILabel!
@@ -34,5 +35,23 @@ class CatDetailsViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func deletePressed(_ sender: Any) {
+        deleCatFromLocal()
     }
 }
+
+// MARK: - VM
+// Codes below should be written in viewModel
+extension CatDetailsViewController {
+    func deleCatFromLocal() {
+        guard let catsVC = self.catsVC as? CatsViewController,
+              let id = self.cat?._id else {
+            return
+        }
+        catsVC.viewModel.delete(text: id)
+    }
+}
+// it would be great to change this class to an independet module
+// not a child of Cats module
+
+// It needs to have a viewModel and
+// a CoreDataClass which can delete the cat
