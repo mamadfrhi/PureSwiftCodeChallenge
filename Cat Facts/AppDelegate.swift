@@ -52,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // because somebody might call etc.
+        saveContext()
+    }
+    
     // MARK: - Core Data Saving support
     
     func saveContext () {
