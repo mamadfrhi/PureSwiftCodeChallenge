@@ -65,7 +65,7 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - ViewModel Delegate
 extension CatsViewController: CatsViewModelViewDelegate {
-    func selectedCatIndex() -> Int {
+    func selectedCatRow() -> Int {
         tableViewCats.indexPathForSelectedRow?.row ?? 0
     }
     

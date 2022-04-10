@@ -91,10 +91,11 @@ extension CatsViewModel {
         }
     }
     
-    func remove(cat: Cat) {
-        // convert cat to nsManagedObject
-        guard let indexToRemove = viewDelegate?.selectedCatIndex(),
-              let catNSManagedObj = catsNSManagedObjects?[indexToRemove] else { return }
+    func remove(at index: Int?) {
+        
+        guard let row = index,
+              let catNSManagedObj = catsNSManagedObjects?[row] else { return }
+        
         service.delete(cat: catNSManagedObj) {
             [weak self]
             (deleted, error) in
@@ -130,14 +131,13 @@ extension CatsViewModel: CatsViewModelType {
     }
     
     func add() {
-        print("To add a new cat")
         getNewCat()
         viewDelegate?.updateScreen()
     }
     
-    func delete(cat: Cat) {
-        print("Delete \(cat) cat")
-        remove(cat: cat)
+    func delete() {
+        let row = self.viewDelegate?.selectedCatRow()
+        self.remove(at: row)
     }
     
     func didSelectRow(_ row: Int, from controller: UIViewController) {

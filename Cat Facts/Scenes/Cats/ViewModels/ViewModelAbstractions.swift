@@ -20,7 +20,7 @@ protocol CatsViewModelType {
     // Events
     func add()
     
-    func delete(cat: Cat)
+    func delete()
     
     func didSelectRow(_ row: Int, from controller: UIViewController)
     
@@ -37,5 +37,5 @@ protocol CatsViewModelViewDelegate: class {
     func updateScreen()
     func hud(show: Bool)
     func showError(errorMessage: String)
-    func selectedCatIndex() -> Int
+    func selectedCatRow() -> Int
 }

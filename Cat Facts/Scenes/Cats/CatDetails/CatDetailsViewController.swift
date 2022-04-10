@@ -48,7 +48,7 @@ extension CatDetailsViewController {
               let cat = self.cat else {
             return
         }
-        catsVC.viewModel.delete(cat: cat)
+        catsVC.viewModel.delete()
         self.navigationController?.popViewController(animated: true)
     }
 }
