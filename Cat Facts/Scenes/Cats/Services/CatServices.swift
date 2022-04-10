@@ -21,12 +21,12 @@ class CatsServices {
 
 // MARK:- API Call
 extension CatsServices {
-    func fetchCat(completionHandler: @escaping (Cat?, Error?) -> ()){ // TODO: can I use an error struct instead of String? ?
+    func fetchCat(completionHandler: @escaping (Cat?, Error?) -> ()){
         apiClient.getCat { (result) in
             switch result {
             case .success(let cat):
                 completionHandler(cat, nil)
-            case .failure(let error): // TODO: make more concise error handling
+            case .failure(let error):
                 completionHandler(nil, error)
             }
         }
@@ -69,6 +69,3 @@ extension CatsServices {
         }
     }
 }
-
-// TODO: write protcols for CoreData & API
-// like networkable &
