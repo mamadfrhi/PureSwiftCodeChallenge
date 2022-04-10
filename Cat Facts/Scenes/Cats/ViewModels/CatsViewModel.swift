@@ -17,8 +17,8 @@ class CatsViewModel {
     // MARK: Properties
     private let service: CatsServices // API Call & CoreData
     
-    private var cats: [Cat] = []
-    private var catsNSManagedObjects: [NSManagedObject]?
+    var cats: [Cat] = []
+    var catsNSManagedObjects: [NSManagedObject]?
     
     // MARK: Init
     init(service: CatsServices) { self.service = service }
@@ -74,7 +74,7 @@ extension CatsViewModel {
 // MARK: - Core Data
 extension CatsViewModel {
     
-    private func saveNewCat(cat: Cat) {
+    func saveNewCat(cat: Cat) {
         service.saveCat(cat: cat) {
             [weak self]
             (error) in
@@ -91,7 +91,7 @@ extension CatsViewModel {
         }
     }
     
-    private func remove(cat: Cat) {
+    func remove(cat: Cat) {
         // convert cat to nsManagedObject
         guard let indexToRemove = viewDelegate?.selectedCatIndex(),
               let catNSManagedObj = catsNSManagedObjects?[indexToRemove] else { return }
