@@ -8,22 +8,25 @@
 import CoreData
 import UIKit
 
-protocol LocalCRUD { // it can be named CoreDataActions too
+protocol LocalCRUD {
     func save(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func delete(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func fetch(completion: @escaping (Result<[Any], Error>) -> ())
 }
 
 class CoreDataManager: LocalCRUD {
+    
+    private let entityName = "Cat"
+    
     func fetch(completion: @escaping (Result<[Any], Error>) -> ()) {
         let managedContext = CoreDataContainer.shared.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Cat")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         
         do {
             let result = try managedContext.fetch(fetchRequest)
             completion(.success(result))
         } catch {
-            completion(.failure(error))
+            completion(.failure(CoreDataError.coreDataFetch))
         }
     }
     
@@ -34,7 +37,10 @@ class CoreDataManager: LocalCRUD {
         }
         
         let managedContext = CoreDataContainer.shared.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Cat", in: managedContext)!
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext) else {
+            completion(.failure(CoreDataError.coreDataSave))
+            return
+        }
         let task = NSManagedObject(entity: entity, insertInto: managedContext)
         task.setValue(catObject._id,
                       forKey: "id")
@@ -67,13 +73,7 @@ class CoreDataManager: LocalCRUD {
     
 }
 struct CoreDataError {
-    static let noAppDelegate = NSError(domain: "No App Delegate", code: 1, userInfo: nil)
+    static let coreDataFetch = NSError(domain: "Something wrong happened while fetching the cat locally.", code: 1, userInfo: nil)
     static let coreDataSave = NSError(domain: "Something wrong happened while saving the cat locally.", code: 1, userInfo: nil)
     static let coreDataDelete = NSError(domain: "Something wrong happened while deleting the cat locally.", code: 1, userInfo: nil)
 }
-
-
-// a class which converts cat simple object
-// to entity
-// why? to get rid of lines 36-43
-// it makes CoreDataManager class even more reuseable.
