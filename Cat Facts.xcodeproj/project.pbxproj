@@ -133,7 +133,6 @@
 				87C9BA6128001A9900BBCFEC /* Coordinator.swift */,
 				87C9BA5D28001A8C00BBCFEC /* AppCoordinator.swift */,
 				87C9BA6428001AA700BBCFEC /* Cats */,
-				8788DD5D2800F018003CFC2B /* CatDetails */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 				87C9BA6F28001B5D00BBCFEC /* ViewControllers */,
 				87C9BA7028001B7600BBCFEC /* Views */,
 				874E72AC28002B31003F5280 /* Services */,
+				8788DD5D2800F018003CFC2B /* CatDetails */,
 			);
 			path = Cats;
 			sourceTree = "<group>";

@@ -9,22 +9,22 @@ import UIKit
 
 class CatDetailsViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: Properties
     var cat: Cat?
     weak var parentVC: UIViewController?
     
-    // MARK: - Outlets
+    // MARK: Outlets
     @IBOutlet weak var factLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     
-    // MARK: - UIViewController
+    // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView(with: self.cat!) // TODO: Take care of force unwrap
     }
 
-    // MARK: - Setup
+    // MARK: Setup
     private
     func setupView(with cat: Cat) {
         let catViewType = CatViewData(cat: cat)
@@ -33,7 +33,7 @@ class CatDetailsViewController: UIViewController {
         self.idLabel.text = "The id is " + catViewType._id
     }
 
-    // MARK: - Actions
+    // MARK: Actions
     @IBAction func deletePressed(_ sender: Any) {
         deleCatFromLocal()
     }
@@ -41,6 +41,7 @@ class CatDetailsViewController: UIViewController {
 
 // MARK: - VM
 // Codes below should be written in viewModel
+
 extension CatDetailsViewController {
     func deleCatFromLocal() {
         guard let catsVC = self.parentVC as? CatsViewController,
@@ -51,8 +52,7 @@ extension CatDetailsViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
-// it would be great to change this class to an independet module
-// not a child of Cats module
 
-// It needs to have a viewModel and
-// a CoreDataClass which can delete the cat
+// it would be great to change this class to an independet module
+// not a child of Cats module, because now it's tightly coupled with its parent
+
