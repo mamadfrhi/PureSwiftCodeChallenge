@@ -16,7 +16,7 @@ class AppCoordinator: Coordinator {
         return UINavigationController(rootViewController: UIViewController())
     }()
     
-    let apiClient: ApiClient = {
+    lazy var apiClient: ApiClient = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Content-Type": "application/json; charset=utf-8"]
         let apiClient = ApiClient(configuration: configuration)
@@ -29,20 +29,18 @@ class AppCoordinator: Coordinator {
     }
     
     override func start() {
-        guard let window = window else {
-            return
-        }
+        guard let window = window else { return }
         
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
-        // show Cats.storyboard as the beginning of the app
+        // show Cats.storyboard as the start point of the app
         let catsCoordinator = CatsCoordinator(rootNavigationViewController: self.rootViewController,
                                               apiClient: self.apiClient,
                                               coreDataManager: CoreDataManager())
         catsCoordinator.start()
     }
     
-    override func finish() {}
+    override func finish() { //sOlid }
     
 }
