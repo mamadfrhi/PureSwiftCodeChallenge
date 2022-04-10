@@ -46,8 +46,7 @@ class CatsCoordinator: Coordinator {
     }
     
     override func finish() {
-        // Clean up any view controllers. Pop them of the navigation stack for example.
-        // delegate?.didFinish(from: self)
+        // sOlid
     }
     
 }
@@ -63,18 +62,20 @@ extension CatsCoordinator {
         catDetailsVC.catsVC = controller
     }
 }
-// MARK: - Coordinator Callback's
-extension CatsCoordinator: CatsViewModelCoordinatorDelegate {
+
+// MARK: - ViewModel Callback's
+//Solid: splitted responsibilities
+extension CatsCoordinator : CatsViewModelCoordinatorDelegate {
     func didSelect(cat: Cat, from controller: UIViewController) {
         print("I'm in CatsCoordinator and user selected \(cat)")
         self.goToCatDetails(with: cat, fom: controller)
     }
 }
 
-// MARK: - ViewModel Callback's
-extension CatsCoordinator//: SearchInputViewModelCoordinatorDelegate
-{
-    //    func didSelectOrigin(from controller: UIViewController) {
-    //        goToLocationSearch(searchType: .origin, from: controller)
-    //    }
+// MARK: - Coordinator Callback's
+// sOlid: If we'd have child coordinator
+extension CatsCoordinator { //: CatCoordinatorDelegate
+//    func didFinish(from coordinator: CatsCoordinator) {
+//        removeChildCoordinator(coordinator)
+//    }
 }
