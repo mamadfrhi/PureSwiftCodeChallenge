@@ -10,17 +10,17 @@ import CoreData
 
 class CatsViewModel {
     
-    // MARK: - Delegates
+    // MARK: Delegates
     var coordinatorDelegate: CatsCoordinator?
     var viewDelegate: CatsViewModelViewDelegate?
     
-    // MARK: - Properties
+    // MARK: Properties
     private let service: CatsServices // API Call & CoreData
     
     private var cats: [Cat] = []
     private var catsNSManagedObjects: [NSManagedObject]?
     
-    // MARK: - Init
+    // MARK: Init
     init(service: CatsServices) { self.service = service }
     
     func start() {
