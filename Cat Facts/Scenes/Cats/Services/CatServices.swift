@@ -12,13 +12,14 @@ class CatsServices {
     private let apiClient: ApiClient
     private let coreDataManager: Storage
     
-    // MARK: - Init
+    // MARK: Init
     init(apiClient: ApiClient, coreDataManager: Storage) {
         self.apiClient = apiClient
         self.coreDataManager = coreDataManager
     }
 }
-// MARK: - API Call
+
+// MARK:- API Call
 extension CatsServices {
     func fetchCat(completionHandler: @escaping (Cat?, Error?) -> ()){ // TODO: can I use an error struct instead of String? ?
         apiClient.getCat { (result) in
@@ -31,7 +32,8 @@ extension CatsServices {
         }
     }
 }
-// MARK: - Core Data
+
+// MARK:- Core Data
 extension CatsServices {
     func saveCat(cat: Cat , completionHandler: @escaping (Error?) -> ()) {
         
