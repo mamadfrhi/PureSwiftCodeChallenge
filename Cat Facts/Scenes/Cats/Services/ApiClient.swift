@@ -8,7 +8,7 @@
 import Foundation
 
 class ApiClient {
-    let configuration: URLSessionConfiguration
+    private let configuration: URLSessionConfiguration
     
     init(configuration: URLSessionConfiguration) {
         self.configuration = configuration
