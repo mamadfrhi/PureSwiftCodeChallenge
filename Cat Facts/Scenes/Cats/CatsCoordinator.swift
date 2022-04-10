@@ -7,7 +7,7 @@
 
 import UIKit
 
-//Instantiate ViewController’s & ViewModel’s
+//Instantiate ViewController(s) & ViewModel(s)
 
 class CatsCoordinator: Coordinator {
     
@@ -63,7 +63,7 @@ extension CatsCoordinator {
     }
 }
 
-// MARK: - ViewModel Callback's
+// MARK: - ViewModel Callbacks
 //Solid: splitted responsibilities
 extension CatsCoordinator : CatsViewModelCoordinatorDelegate {
     func didSelect(cat: Cat, from controller: UIViewController) {
@@ -72,7 +72,7 @@ extension CatsCoordinator : CatsViewModelCoordinatorDelegate {
     }
 }
 
-// MARK: - Coordinator Callback's
+// MARK: - Coordinator Callbacks
 // sOlid: If we'd have child coordinator
 extension CatsCoordinator { //: CatCoordinatorDelegate
 //    func didFinish(from coordinator: CatsCoordinator) {
