@@ -29,7 +29,7 @@ class CatDetailsViewController: UIViewController {
     func setupView(with cat: Cat) {
         let catViewType = CatViewData(cat: cat)
         self.factLabel.text = "Fact is " + catViewType.text
-        self.createdAtLabel.text = "Created At " + catViewType.createdAt
+        self.createdAtLabel.text = "Created at " + catViewType.createdAt
         self.idLabel.text = "The id is " + catViewType._id
     }
 

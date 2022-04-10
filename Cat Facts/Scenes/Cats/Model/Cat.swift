@@ -26,7 +26,7 @@ struct CatViewData: CatViewDataType {
     }
     
     var text: String {
-        return cat.text
+        return cat.text.firstLowercased
     }
     
     var createdAt: String {
