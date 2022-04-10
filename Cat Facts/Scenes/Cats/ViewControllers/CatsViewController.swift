@@ -15,7 +15,7 @@ class CatsViewController: UIViewController {
             viewModel.viewDelegate = self
         }
     }
-    let hud = ProgressHUD(title: "Please wait...", theme: .dark)
+    private let hud = ProgressHUD(title: "Please wait...", theme: .dark)
     // hud means Heads-up Display
     
     // MARK: Outlets
