@@ -16,11 +16,7 @@ protocol LocalCRUD { // it can be named CoreDataActions too
 
 class CoreDataManager: LocalCRUD {
     func fetch(completion: @escaping (Result<[Any], Error>) -> ()) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            completion(.failure(CoreDataError.noAppDelegate))
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataContainer.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Cat")
         
         do {
@@ -32,16 +28,12 @@ class CoreDataManager: LocalCRUD {
     }
     
     func save(object: Any?, completion: @escaping (Result<Bool, Error>) -> ()) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            completion(.failure(CoreDataError.noAppDelegate))
-            return
-        }
         guard let catObject = object as? Cat else {
             completion(.failure(CoreDataError.coreDataSave))
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext // TODO: move from Appdelegate to another class
+        let managedContext = CoreDataContainer.shared.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Cat", in: managedContext)!
         let task = NSManagedObject(entity: entity, insertInto: managedContext)
         task.setValue(catObject._id,
@@ -59,16 +51,11 @@ class CoreDataManager: LocalCRUD {
     }
     
     func delete(object: Any?, completion: (Result<Bool, Error>) -> ()) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            completion(.failure(CoreDataError.noAppDelegate))
-            return
-        }
-        
         guard let nsManagedObject = object as? NSManagedObject else {
             completion(.failure(CoreDataError.coreDataDelete))
             return
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataContainer.shared.persistentContainer.viewContext
         managedContext.delete(nsManagedObject)
         do {
             try managedContext.save()
@@ -87,5 +74,6 @@ struct CoreDataError {
 
 
 // a class which converts cat simple object
-// to dataType to save
-// to cat to pass
+// to entity
+// why? to get rid of lines 36-43
+// it makes CoreDataManager class even more reuseable.

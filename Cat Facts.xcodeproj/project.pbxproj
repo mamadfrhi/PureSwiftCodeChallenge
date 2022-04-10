@@ -24,6 +24,7 @@
 		87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA6128001A9900BBCFEC /* Coordinator.swift */; };
 		87C9BA6628001AC400BBCFEC /* Cats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C9BA6528001AC400BBCFEC /* Cats.storyboard */; };
 		87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */; };
+		87EBCBC22802C753001750A4 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EBCBC12802C753001750A4 /* CoreDataContainer.swift */; };
 		87EF89F02802001D009CFB70 /* ViewModelAbstractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EF89EF2802001D009CFB70 /* ViewModelAbstractions.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		87C9BA6128001A9900BBCFEC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		87C9BA6528001AC400BBCFEC /* Cats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cats.storyboard; sourceTree = "<group>"; };
 		87C9BA6928001B1200BBCFEC /* CatsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsCoordinator.swift; sourceTree = "<group>"; };
+		87EBCBC12802C753001750A4 /* CoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContainer.swift; sourceTree = "<group>"; };
 		87EF89EF2802001D009CFB70 /* ViewModelAbstractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelAbstractions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 			children = (
 				87ABDB8F28018B4A00A7C3C8 /* CoreData.swift */,
 				87ABDB9E2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift */,
+				87EBCBC12802C753001750A4 /* CoreDataContainer.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */,
 				874E72B328002E81003F5280 /* CatsViewController.swift in Sources */,
 				873665432800C66B005EDA25 /* ProgressHUD.swift in Sources */,
+				87EBCBC22802C753001750A4 /* CoreDataContainer.swift in Sources */,
 				87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */,
 				874E72A928002AF6003F5280 /* CatsViewModel.swift in Sources */,
 				87ABDB9F2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift in Sources */,
