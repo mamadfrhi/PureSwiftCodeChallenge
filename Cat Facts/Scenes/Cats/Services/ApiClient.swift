@@ -39,10 +39,7 @@ class ApiClient {
 }
 
 struct CatAPIError: Error {
-    static let noData = NSError(domain: "Server response is not valid.",
-                                code: 0, userInfo: nil)
-    static let clientError = NSError(domain: "A HTTPS client error occured.",
-                                     code: 2, userInfo: nil)
-    static let serverError = NSError(domain: "A HTTPS server error occured.",
-                                     code: 3, userInfo: nil)
+    static let noData = NSError(domain: "Server response is not valid.", code: 01, userInfo: nil)
+    static let clientError = NSError(domain: "A HTTPS client error occured.", code: 02, userInfo: nil)
+    static let serverError = NSError(domain: "A HTTPS server error occured.", code: 03, userInfo: nil)
 }

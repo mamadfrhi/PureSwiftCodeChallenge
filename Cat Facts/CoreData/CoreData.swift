@@ -73,7 +73,7 @@ class CoreDataManager: LocalCRUD {
     
 }
 struct CoreDataError {
-    static let coreDataFetch = NSError(domain: "Something wrong happened while fetching the cat locally.", code: 1, userInfo: nil)
-    static let coreDataSave = NSError(domain: "Something wrong happened while saving the cat locally.", code: 1, userInfo: nil)
-    static let coreDataDelete = NSError(domain: "Something wrong happened while deleting the cat locally.", code: 1, userInfo: nil)
+    static let coreDataFetch = NSError(domain: "Something wrong happened while fetching the cat locally.", code: 10, userInfo: nil)
+    static let coreDataSave = NSError(domain: "Something wrong happened while saving the cat locally.", code: 11, userInfo: nil)
+    static let coreDataDelete = NSError(domain: "Something wrong happened while deleting the cat locally.", code: 12, userInfo: nil)
 }
