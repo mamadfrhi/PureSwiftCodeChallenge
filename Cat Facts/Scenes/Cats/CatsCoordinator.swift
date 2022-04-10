@@ -13,17 +13,17 @@ class CatsCoordinator: Coordinator {
     
     // MARK: - Properties
     
-    let rootNavigationController: UINavigationController
+    private let rootNavigationController: UINavigationController
     
-    let catsStoryboard = UIStoryboard(name: "Cats", bundle: nil)
-    let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
+    private let catsStoryboard = UIStoryboard(name: "Cats", bundle: nil)
+    private let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
     
-    let apiClient: ApiClient
-    let coreDataManager: LocalCRUD
+    private let apiClient: ApiClient
+    private let coreDataManager: LocalCRUD
     
-    // MARK: VM / VC's
+    // MARK: VM
     
-    var catsViewModel: CatsViewModel {
+    private var catsViewModel: CatsViewModel {
         let catsService = CatsServices(apiClient: apiClient, coreDataManager: coreDataManager)
         let viewModel = CatsViewModel(service: catsService)
         viewModel.coordinatorDelegate = self
@@ -54,7 +54,7 @@ class CatsCoordinator: Coordinator {
 // MARK: - Navigation
 extension CatsCoordinator {
     private func goToCatDetails(with cat: Cat, fom controller: UIViewController) {
-        print("I'm going to transfer you to CatDetail VC")
+        print("\n I'm going to transfer you to CatDetail VC \n")
         let catDetailsVC = self.catDetailsStoryboard.instantiateViewController(withIdentifier: "CatDetails") as! CatDetailsViewController
         self.rootNavigationController.pushViewController(catDetailsVC,
                                                          animated: true)
@@ -67,7 +67,7 @@ extension CatsCoordinator {
 //Solid: splitted responsibilities
 extension CatsCoordinator : CatsViewModelCoordinatorDelegate {
     func didSelect(cat: Cat, from controller: UIViewController) {
-        print("I'm in CatsCoordinator and user selected \(cat)")
+        print("\n I'm in CatsCoordinator and user selected \(cat) \n")
         self.goToCatDetails(with: cat, fom: controller)
     }
 }
