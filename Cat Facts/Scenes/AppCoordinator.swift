@@ -41,6 +41,6 @@ class AppCoordinator: Coordinator {
         catsCoordinator.start()
     }
     
-    override func finish() { //sOlid }
+    override func finish() { /* sOlid */ }
     
 }
