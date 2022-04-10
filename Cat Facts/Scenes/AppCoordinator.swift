@@ -35,8 +35,8 @@ class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
         
         // show Cats.storyboard as the start point of the app
-        let catsCoordinator = CatsCoordinator(rootNavigationViewController: self.rootViewController,
-                                              apiClient: self.apiClient,
+        let catsCoordinator = CatsCoordinator(rootNavigationViewController: rootViewController,
+                                              apiClient: apiClient,
                                               coreDataManager: CoreDataManager())
         catsCoordinator.start()
     }
