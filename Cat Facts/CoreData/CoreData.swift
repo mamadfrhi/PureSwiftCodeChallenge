@@ -8,13 +8,13 @@
 import CoreData
 import UIKit
 
-protocol LocalCRUD {
+protocol Storage {
     func save(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func delete(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func fetch(completion: @escaping (Result<[Any], Error>) -> ())
 }
 
-class CoreDataManager: LocalCRUD {
+class CoreDataManager: Storage {
     
     private let entityName = "Cat"
     

@@ -10,10 +10,10 @@ import CoreData
 class CatsServices {
     
     private let apiClient: ApiClient
-    private let coreDataManager: LocalCRUD
+    private let coreDataManager: Storage
     
     // MARK: - Init
-    init(apiClient: ApiClient, coreDataManager: LocalCRUD) {
+    init(apiClient: ApiClient, coreDataManager: Storage) {
         self.apiClient = apiClient
         self.coreDataManager = coreDataManager
     }

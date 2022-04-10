@@ -19,7 +19,7 @@ class CatsCoordinator: Coordinator {
     private let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
     
     private let apiClient: ApiClient
-    private let coreDataManager: LocalCRUD
+    private let coreDataManager: Storage
     
     // MARK: VM
     
@@ -33,7 +33,7 @@ class CatsCoordinator: Coordinator {
     // MARK: Coordinator
     init(rootNavigationViewController: UINavigationController,
          apiClient: ApiClient,
-         coreDataManager: LocalCRUD) {
+         coreDataManager: Storage) {
         self.rootNavigationController = rootNavigationViewController
         self.apiClient = apiClient
         self.coreDataManager = coreDataManager
