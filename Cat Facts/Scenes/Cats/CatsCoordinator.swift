@@ -11,7 +11,7 @@ import UIKit
 
 class CatsCoordinator: Coordinator {
     
-    // MARK: - Properties
+    // MARK: Properties
     
     private let rootNavigationController: UINavigationController
     
@@ -30,7 +30,7 @@ class CatsCoordinator: Coordinator {
         return viewModel
     }
     
-    // MARK: - Coordinator
+    // MARK: Coordinator
     init(rootNavigationViewController: UINavigationController,
          apiClient: ApiClient,
          coreDataManager: LocalCRUD) {
@@ -59,7 +59,7 @@ extension CatsCoordinator {
         self.rootNavigationController.pushViewController(catDetailsVC,
                                                          animated: true)
         catDetailsVC.cat = cat
-        catDetailsVC.catsVC = controller
+        catDetailsVC.parentVC = controller
     }
 }
 
