@@ -9,7 +9,7 @@ import UIKit
 
 class CatsViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: Properties
     var viewModel: CatsViewModel! {
         didSet {
             viewModel.viewDelegate = self
@@ -18,29 +18,31 @@ class CatsViewController: UIViewController {
     let hud = ProgressHUD(title: "Please wait...", theme: .dark)
     // hud means Heads-up Display
     
-    // MARK: - Outlets
-    @IBOutlet weak var tavleViewCats: UITableView!
+    // MARK: Outlets
+    @IBOutlet weak var tableViewCats: UITableView!
     @IBOutlet weak var labelErrorMessage: UILabel!
     
-    // MARK: - UIViewController
+    // MARK: UIViewController
+    override func loadView() {
+        super.loadView()
+        viewModel.start()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.start()
         setup()
     }
 
-    // MARK: - Setup
-    func setup() {
+    // MARK: Setup
+    private func setup() {
         setupDelegeates()
-        [hud].forEach(view.addSubview(_:))
+        [hud].forEach(view.addSubview(_:)) // add HUD on VC
     }
-    private
-    func setupDelegeates() {
-        tavleViewCats.delegate = self
-        tavleViewCats.dataSource = self
+    private func setupDelegeates() {
+        tableViewCats.delegate = self
+        tableViewCats.dataSource = self
     }
 
-    // MARK: - Actions
+    // MARK: Actions
     @IBAction func add(_ sender: Any) {
         viewModel.add()
     }
@@ -57,29 +59,28 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.didSelectRow(indexPath.row,
-                               from: self)
+        viewModel.didSelectRow(indexPath.row, from: self)
     }
 }
 
 // MARK: - ViewModel Delegate
 extension CatsViewController: CatsViewModelViewDelegate {
     func selectedCatIndex() -> Int {
-        self.tavleViewCats.indexPathForSelectedRow?.row ?? 0
+        tableViewCats.indexPathForSelectedRow?.row ?? 0
     }
     
     func updateScreen() {
-        tavleViewCats.isHidden = false
-        tavleViewCats.reloadData()
+        tableViewCats.isHidden = false
+        tableViewCats.reloadData()
     }
     
     func hud(show: Bool) {
-        show ? self.hud.show() : self.hud.hide()
+        show ? hud.show() : hud.hide()
     }
     
     func showError(errorMessage: String) {
-        self.hud(show: false)
-        tavleViewCats.isHidden = true
-        self.labelErrorMessage.text = errorMessage
+        hud(show: false)
+        tableViewCats.isHidden = true
+        labelErrorMessage.text = errorMessage
     }
 }
