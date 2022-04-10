@@ -7,14 +7,6 @@
 
 import UIKit
 
-// MARK: - ViewModelViewDelegate
-protocol CatsViewModelViewDelegate: class {
-    func updateScreen()
-    func hud(show: Bool)
-    func showError(errorMessage: String)
-    func selectedCatIndex() -> Int
-}
-
 // MARK: - ViewModelType
 protocol CatsViewModelType {
     
@@ -23,7 +15,7 @@ protocol CatsViewModelType {
     // Data Source
     func numberOfItems() -> Int
     
-    func itemFor(row: Int) -> UITableViewCell // PlaceViewDataType
+    func itemFor(row: Int) -> UITableViewCell
     
     // Events
     func add()
@@ -32,9 +24,18 @@ protocol CatsViewModelType {
     
     func didSelectRow(_ row: Int, from controller: UIViewController)
     
+    func refreshView()
 }
 
-// MARK: - ViewModelCoordinator
+// MARK: - ViewModelCoordinator(delegate)
 protocol CatsViewModelCoordinatorDelegate: class {
     func didSelect(cat: Cat, from controller: UIViewController)
+}
+
+// MARK: - ViewModelViewDelegate
+protocol CatsViewModelViewDelegate: class {
+    func updateScreen()
+    func hud(show: Bool)
+    func showError(errorMessage: String)
+    func selectedCatIndex() -> Int
 }

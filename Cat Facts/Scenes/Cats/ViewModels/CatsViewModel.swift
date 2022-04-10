@@ -11,19 +11,17 @@ import CoreData
 class CatsViewModel {
     
     // MARK: - Delegates
-    var coordinatorDelegate: CatsCoordinator? // navigate to next
-    weak var viewDelegate: CatsViewModelViewDelegate?
+    var coordinatorDelegate: CatsCoordinator?
+    var viewDelegate: CatsViewModelViewDelegate?
     
     // MARK: - Properties
-    fileprivate let service: CatsServices // save in CoreData
+    private let service: CatsServices // API Call & CoreData
     
-    fileprivate var cats: [Cat] = []
-    fileprivate var catsNSManagedObjects: [NSManagedObject]?
+    private var cats: [Cat] = []
+    private var catsNSManagedObjects: [NSManagedObject]?
     
     // MARK: - Init
-    init(service: CatsServices) {
-        self.service = service
-    }
+    init(service: CatsServices) { self.service = service }
     
     func start() {
         service.fetchLocalCats {
@@ -39,8 +37,11 @@ class CatsViewModel {
         }
     }
     
-    // MARK: - Network
-    func getNewCat() {
+}
+
+// MARK: - Network
+extension CatsViewModel {
+    private func getNewCat() {
         DispatchQueue.main.async {
             self.viewDelegate?.hud(show: true)
         }
@@ -68,9 +69,12 @@ class CatsViewModel {
             
         }
     }
+}
+
+// MARK: - Core Data
+extension CatsViewModel {
     
-    // MARK: - Core Data
-    func saveNewCat(cat: Cat) {
+    private func saveNewCat(cat: Cat) {
         service.saveCat(cat: cat) {
             [weak self]
             (error) in
@@ -83,13 +87,14 @@ class CatsViewModel {
                 return
             }
             
-            sSelf.start() // to refresh arrays
+            sSelf.refreshView()
         }
     }
-    func remove(cat: Cat) {
+    
+    private func remove(cat: Cat) {
         // convert cat to nsManagedObject
-        let indexToRemove = viewDelegate!.selectedCatIndex() // Take care of force unwrap
-        guard let catNSManagedObj = self.catsNSManagedObjects?[indexToRemove] else { return }
+        guard let indexToRemove = viewDelegate?.selectedCatIndex(),
+              let catNSManagedObj = catsNSManagedObjects?[indexToRemove] else { return }
         service.delete(cat: catNSManagedObj) {
             [weak self]
             (deleted, error) in
@@ -102,8 +107,7 @@ class CatsViewModel {
             }
             
             if deleted {
-                sSelf.start() // to refresh arrays
-                sSelf.viewDelegate?.updateScreen()
+                sSelf.refreshView()
             }
         }
         
@@ -119,7 +123,7 @@ extension CatsViewModel: CatsViewModelType {
     
     func itemFor(row: Int) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
-        let catViewData = CatViewData(cat: self.cats[row])
+        let catViewData = CatViewData(cat: cats[row])
         cell.textLabel?.text = catViewData._id
         cell.detailTextLabel?.text = catViewData.createdAt
         return cell
@@ -133,7 +137,7 @@ extension CatsViewModel: CatsViewModelType {
     
     func delete(cat: Cat) {
         print("Delete \(cat) cat")
-        self.remove(cat: cat)
+        remove(cat: cat)
     }
     
     func didSelectRow(_ row: Int, from controller: UIViewController) {
@@ -141,8 +145,11 @@ extension CatsViewModel: CatsViewModelType {
         didSelect(cat: cats[row], from: controller)
     }
     
+    func refreshView() {
+        start() // to refresh arrays
+        viewDelegate?.updateScreen()
+    }
 }
-
 
 // MARK: - ViewModelCoordinator
 extension CatsViewModel: CatsViewModelCoordinatorDelegate {
