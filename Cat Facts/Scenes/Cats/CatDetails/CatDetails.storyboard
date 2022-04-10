@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cat Details View Controller-->
+        <!--Cat Detail-->
         <scene sceneID="N4J-xF-3Sc">
             <objects>
-                <viewController storyboardIdentifier="CatDetails" id="IXB-gj-2qm" customClass="CatDetailsViewController" customModule="Cat_Facts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CatDetails" title="Cat Detail" id="IXB-gj-2qm" customClass="CatDetailsViewController" customModule="Cat_Facts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yvy-sx-8DQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
