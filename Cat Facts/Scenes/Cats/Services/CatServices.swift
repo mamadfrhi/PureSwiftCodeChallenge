@@ -9,7 +9,7 @@ import CoreData
 
 class CatsServices {
     
-    private let apiClient: ApiClient
+    private let apiClient: Network
     private let coreDataManager: Storage
     
     // MARK: Init
@@ -21,8 +21,8 @@ class CatsServices {
 
 // MARK:- API Call
 extension CatsServices {
-    func fetchCat(completionHandler: @escaping (Cat?, Error?) -> ()){
-        apiClient.getCat { (result) in
+    func fetchCat(completionHandler: @escaping (Any?, Error?) -> ()){
+        apiClient.fetch { (result) in
             switch result {
             case .success(let cat):
                 completionHandler(cat, nil)

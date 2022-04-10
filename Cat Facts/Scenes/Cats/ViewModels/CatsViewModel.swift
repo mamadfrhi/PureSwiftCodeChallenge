@@ -57,7 +57,7 @@ extension CatsViewModel {
                 return
             }
             
-            if let cat = cat {
+            if let cat = cat as? Cat {
                 DispatchQueue.main.async {
                     sSelf.saveNewCat(cat: cat)
                     sSelf.viewDelegate?.updateScreen()

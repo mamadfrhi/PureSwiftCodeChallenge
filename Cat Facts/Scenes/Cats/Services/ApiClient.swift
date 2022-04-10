@@ -7,14 +7,19 @@
 
 import Foundation
 
-class ApiClient {
+
+protocol Network {
+    func fetch(completionHandler: @escaping (Result<Any?, Error>) -> ())
+}
+
+class ApiClient: Network {
     private let configuration: URLSessionConfiguration
     
     init(configuration: URLSessionConfiguration) {
         self.configuration = configuration
     }
     
-    func getCat(completionHandler: @escaping (Result<Cat?, Error>) -> ()) {
+    func fetch(completionHandler: @escaping (Result<Any?, Error>) -> ()) {
         let url = URL(string: "https://cat-fact.herokuapp.com/" + "facts/" + "random")!
         let session = URLSession(configuration: configuration)
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
