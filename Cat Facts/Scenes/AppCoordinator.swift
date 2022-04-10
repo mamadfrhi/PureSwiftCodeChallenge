@@ -9,7 +9,7 @@ import UIKit
 
 class AppCoordinator: Coordinator {
     
-    // MARK: - Properties
+    // MARK: Properties
     let window: UIWindow?
     
     lazy var rootViewController: UINavigationController = {
@@ -23,7 +23,7 @@ class AppCoordinator: Coordinator {
         return apiClient
     }()
     
-    // MARK: - Coordinator
+    // MARK: Coordinator
     init(window: UIWindow?) {
         self.window = window
     }
