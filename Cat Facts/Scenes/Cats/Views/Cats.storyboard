@@ -50,7 +50,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="labelErrorMessage" destination="ehi-qP-cFN" id="HU2-MP-cgs"/>
-                        <outlet property="tavleViewCats" destination="oD0-fg-3TG" id="CwR-n5-a7u"/>
+                        <outlet property="tableViewCats" destination="oD0-fg-3TG" id="CwR-n5-a7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fU-uG-xDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

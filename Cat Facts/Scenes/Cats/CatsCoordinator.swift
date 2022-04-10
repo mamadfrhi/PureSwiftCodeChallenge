@@ -53,7 +53,7 @@ class CatsCoordinator: Coordinator {
 
 // MARK: - Navigation
 extension CatsCoordinator {
-    private func goToCatDetails(with cat: Cat, fom controller: UIViewController) {
+    private func goToCatDetails(with cat: Cat, from controller: UIViewController) {
         print("\n I'm going to transfer you to CatDetail VC \n")
         let catDetailsVC = self.catDetailsStoryboard.instantiateViewController(withIdentifier: "CatDetails") as! CatDetailsViewController
         self.rootNavigationController.pushViewController(catDetailsVC,
@@ -68,7 +68,7 @@ extension CatsCoordinator {
 extension CatsCoordinator : CatsViewModelCoordinatorDelegate {
     func didSelect(cat: Cat, from controller: UIViewController) {
         print("\n I'm in CatsCoordinator and user selected \(cat) \n")
-        self.goToCatDetails(with: cat, fom: controller)
+        self.goToCatDetails(with: cat, from: controller)
     }
 }
 

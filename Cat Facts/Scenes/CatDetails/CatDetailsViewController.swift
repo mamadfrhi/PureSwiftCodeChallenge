@@ -11,7 +11,7 @@ class CatDetailsViewController: UIViewController {
     
     // MARK: - Properties
     var cat: Cat?
-    weak var catsVC: UIViewController?
+    weak var parentVC: UIViewController?
     
     // MARK: - Outlets
     @IBOutlet weak var factLabel: UILabel!
@@ -43,7 +43,7 @@ class CatDetailsViewController: UIViewController {
 // Codes below should be written in viewModel
 extension CatDetailsViewController {
     func deleCatFromLocal() {
-        guard let catsVC = self.catsVC as? CatsViewController,
+        guard let catsVC = self.parentVC as? CatsViewController,
               let cat = self.cat else {
             return
         }
