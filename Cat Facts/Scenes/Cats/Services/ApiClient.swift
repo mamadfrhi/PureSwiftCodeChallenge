@@ -20,6 +20,9 @@ class ApiClient: Network {
     }
     
     func fetch(completionHandler: @escaping (Result<Any?, Error>) -> ()) {
+        
+        if !connected() { completionHandler(.failure(CatAPIError.disconnected)) }
+        
         let url = URL(string: "https://cat-fact.herokuapp.com/" + "facts/" + "random")!
         let session = URLSession(configuration: configuration)
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -41,10 +44,15 @@ class ApiClient: Network {
         })
         task.resume()
     }
+    
+    private func connected() -> Bool { // to the internet
+        InternetConnectionManager.shared.isConnectedToNetwork()
+    }
 }
 
 struct CatAPIError: Error {
     static let noData = NSError(domain: "Server response is not valid.", code: 01, userInfo: nil)
     static let clientError = NSError(domain: "A HTTPS client error occured.", code: 02, userInfo: nil)
     static let serverError = NSError(domain: "A HTTPS server error occured.", code: 03, userInfo: nil)
+    static let disconnected = NSError(domain: " You're not connected to the internet. So, you can't add a new cat.\n Whatever you see are offline.", code: 04, userInfo: nil)
 }

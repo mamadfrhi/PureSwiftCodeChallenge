@@ -79,8 +79,19 @@ extension CatsViewController: CatsViewModelViewDelegate {
     }
     
     func showError(errorMessage: String) {
+        // Show error label & hide tableView
         hud(show: false)
         tableViewCats.isHidden = true
+        labelErrorMessage.isHidden = false
         labelErrorMessage.text = errorMessage
+        
+        UIView.animate(withDuration: 3) {
+            self.labelErrorMessage.alpha = 0
+        } completion: {_ in
+            // reset views
+            self.labelErrorMessage.isHidden = true
+            self.tableViewCats.isHidden = false
+            self.labelErrorMessage.alpha = 1
+        }
     }
 }
