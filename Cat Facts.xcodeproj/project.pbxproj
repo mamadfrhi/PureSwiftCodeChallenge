@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8736653E2800AA49005EDA25 /* cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736653D2800AA49005EDA25 /* cat.swift */; };
+		8736653E2800AA49005EDA25 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736653D2800AA49005EDA25 /* Cat.swift */; };
 		873665432800C66B005EDA25 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873665422800C66B005EDA25 /* ProgressHUD.swift */; };
 		874E72A528002A90003F5280 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72A428002A90003F5280 /* ApiClient.swift */; };
 		874E72A928002AF6003F5280 /* CatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72A828002AF6003F5280 /* CatsViewModel.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8736653D2800AA49005EDA25 /* cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cat.swift; sourceTree = "<group>"; };
+		8736653D2800AA49005EDA25 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		873665422800C66B005EDA25 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		874E72A428002A90003F5280 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		874E72A828002AF6003F5280 /* CatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsViewModel.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		8736653C2800AA41005EDA25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8736653D2800AA49005EDA25 /* cat.swift */,
+				8736653D2800AA49005EDA25 /* Cat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8736653E2800AA49005EDA25 /* cat.swift in Sources */,
+				8736653E2800AA49005EDA25 /* Cat.swift in Sources */,
 				87ABDB9028018B4A00A7C3C8 /* CoreData.swift in Sources */,
 				874E72AE28002B3A003F5280 /* CatServices.swift in Sources */,
 				8788DD632800F224003CFC2B /* CatDetailsViewController.swift in Sources */,
