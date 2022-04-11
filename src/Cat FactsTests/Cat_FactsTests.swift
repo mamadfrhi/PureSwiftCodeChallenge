@@ -23,7 +23,7 @@ class Cat_FactsTests: XCTestCase {
         XCTAssertEqual(catView.createdAt, dateStringFromisoTimeStamp)
         
         // Test cat fact text
-        XCTAssertEqual(catView.text, "a good cat.")
+        XCTAssertEqual(catView.text, cat.text)
         
         // test cat id
         XCTAssertEqual(catView._id, cat._id)

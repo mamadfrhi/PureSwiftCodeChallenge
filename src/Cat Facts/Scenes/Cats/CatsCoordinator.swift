@@ -18,7 +18,7 @@ class CatsCoordinator: Coordinator {
     private let catsStoryboard = UIStoryboard(name: "Cats", bundle: nil)
     private let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
     
-    private let apiClient: ApiClient
+    private let apiClient: Network
     private let coreDataManager: Storage
     
     // MARK: VM

@@ -16,7 +16,7 @@ class AppCoordinator: Coordinator {
         return UINavigationController(rootViewController: UIViewController())
     }()
     
-    lazy var apiClient: ApiClient = {
+    lazy var apiClient: Network = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Content-Type": "application/json; charset=utf-8"]
         let apiClient = ApiClient(configuration: configuration)
