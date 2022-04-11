@@ -13,7 +13,7 @@ class CatsServices {
     private let coreDataManager: Storage
     
     // MARK: Init
-    init(apiClient: ApiClient, coreDataManager: Storage) {
+    init(apiClient: Network, coreDataManager: Storage) {
         self.apiClient = apiClient
         self.coreDataManager = coreDataManager
     }

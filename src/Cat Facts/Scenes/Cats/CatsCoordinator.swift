@@ -32,7 +32,7 @@ class CatsCoordinator: Coordinator {
     
     // MARK: Coordinator
     init(rootNavigationViewController: UINavigationController,
-         apiClient: ApiClient,
+         apiClient: Network,
          coreDataManager: Storage) {
         self.rootNavigationController = rootNavigationViewController
         self.apiClient = apiClient
