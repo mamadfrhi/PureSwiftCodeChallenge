@@ -99,6 +99,7 @@
 		874E72AC28002B31003F5280 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				87ABDB8E28018B2F00A7C3C8 /* CoreData */,
 				874E72A428002A90003F5280 /* ApiClient.swift */,
 				874E72AD28002B3A003F5280 /* CatServices.swift */,
 			);
@@ -156,7 +157,6 @@
 			children = (
 				87C9BA42280019E000BBCFEC /* AppDelegate.swift */,
 				87C9BA4B280019E000BBCFEC /* Cat_Facts.xcdatamodeld */,
-				87ABDB8E28018B2F00A7C3C8 /* CoreData */,
 				87C9BA5C28001A6800BBCFEC /* Scenes */,
 				87C9BA7128001C6700BBCFEC /* Resources */,
 			);

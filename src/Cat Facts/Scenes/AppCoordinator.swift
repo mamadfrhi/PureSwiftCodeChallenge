@@ -23,6 +23,8 @@ class AppCoordinator: Coordinator {
         return apiClient
     }()
     
+    lazy var coreDataManager = CoreDataManager()
+    
     // MARK: Coordinator
     init(window: UIWindow?) {
         self.window = window
@@ -37,7 +39,7 @@ class AppCoordinator: Coordinator {
         // show Cats.storyboard as the start point of the app
         let catsCoordinator = CatsCoordinator(rootNavigationViewController: rootViewController,
                                               apiClient: apiClient,
-                                              coreDataManager: CoreDataManager())
+                                              coreDataManager: coreDataManager)
         catsCoordinator.start()
     }
     
