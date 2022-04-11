@@ -35,7 +35,7 @@ extension CatsServices {
 
 // MARK:- Core Data
 extension CatsServices {
-    func saveCat(cat: Cat , completionHandler: @escaping (Error?) -> ()) {
+    func save(cat: Cat , completionHandler: @escaping (Error?) -> ()) {
         
         coreDataManager.save(object: cat) { (result) in
             switch result {
@@ -47,7 +47,7 @@ extension CatsServices {
         }
     }
     
-    func fetchLocalCats(completionHandler: @escaping ([Any]?, Error?) -> ()) {
+    func fetchSavedCats(completionHandler: @escaping ([Any]?, Error?) -> ()) {
         coreDataManager.fetch { (result) in
             switch result {
             case .success(let cats):

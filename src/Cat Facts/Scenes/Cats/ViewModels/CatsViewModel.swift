@@ -24,7 +24,7 @@ class CatsViewModel {
     init(service: CatsServices) { self.service = service }
     
     func start() {
-        service.fetchLocalCats {
+        service.fetchSavedCats {
             [weak self]
             (catsNSObjectArray, error) in
             guard let sSelf = self,
@@ -75,7 +75,7 @@ extension CatsViewModel {
 extension CatsViewModel {
     
     func saveNewCat(cat: Cat) {
-        service.saveCat(cat: cat) {
+        service.save(cat: cat) {
             [weak self]
             (error) in
             guard let sSelf = self else { return }
