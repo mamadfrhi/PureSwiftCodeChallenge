@@ -16,6 +16,8 @@ protocol Storage {
 
 class CoreDataManager: Storage {
     
+    // TODO: write an init and inject CoreDataContainer
+    
     private let entityName = "Cat"
     
     func fetch(completion: @escaping (Result<[Any], Error>) -> ()) {

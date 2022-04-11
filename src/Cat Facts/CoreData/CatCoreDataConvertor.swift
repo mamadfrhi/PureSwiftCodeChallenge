@@ -9,6 +9,8 @@ import CoreData
 
 class CatCoreDataConvertor {
     
+    // TODO: write a wrapper for NSManagedObject
+    
     func giveMeCats(from catsNSManagedObjects: [NSManagedObject]) -> [Cat] {
         var cats : [Cat] = []
         for nsManagedObj in catsNSManagedObjects {
