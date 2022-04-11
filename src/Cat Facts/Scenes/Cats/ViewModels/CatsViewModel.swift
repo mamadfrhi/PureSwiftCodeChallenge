@@ -42,9 +42,7 @@ class CatsViewModel {
 // MARK: - Network
 extension CatsViewModel {
     private func getNewCat() {
-        DispatchQueue.main.async {
-            self.viewDelegate?.hud(show: true)
-        }
+        self.viewDelegate?.hud(show: true)
         service.fetchCat {
             [weak self]
             (cat, error) in
@@ -65,7 +63,9 @@ extension CatsViewModel {
                 }
                 return
             }
-            sSelf.viewDelegate?.showError(errorMessage: "Some Errors when communicating with the server occured!")
+            DispatchQueue.main.async {
+                sSelf.viewDelegate?.showError(errorMessage: "Some Errors when communicating with the server occured!")
+            }
             
         }
     }
