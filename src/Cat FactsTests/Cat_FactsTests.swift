@@ -23,7 +23,7 @@ class Cat_FactsTests: XCTestCase {
         XCTAssertEqual(catView.createdAt, dateStringFromisoTimeStamp)
         
         // Test cat fact text
-        XCTAssertEqual(catView.text, cat.text)
+        XCTAssertNotEqual(catView.text, cat.text)
         
         // test cat id
         XCTAssertEqual(catView._id, cat._id)
@@ -55,7 +55,7 @@ class Cat_FactsTests: XCTestCase {
         catsViewModel.remove(at: lastRow)
         XCTAssertEqual(catsViewModel.cats.count,
                           catsViewModel.catsNSManagedObjects?.count)
-        
+        // check if corresponded item of cat array will reflect in NSObject or not!
         // MARK:- Table View
         // rows
         XCTAssertEqual(catsViewModel.cats.count,

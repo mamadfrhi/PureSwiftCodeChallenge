@@ -127,9 +127,9 @@
 		87ABDB8E28018B2F00A7C3C8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				87EBCBC12802C753001750A4 /* CoreDataContainer.swift */,
 				87ABDB8F28018B4A00A7C3C8 /* CoreData.swift */,
 				87ABDB9E2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift */,
-				87EBCBC12802C753001750A4 /* CoreDataContainer.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
