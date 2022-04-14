@@ -11,7 +11,7 @@ import CoreData
 class CatsViewModel {
     
     // MARK: Delegates
-    var coordinatorDelegate: CatsCoordinator?
+    var coordinatorDelegate: CatsViewModelCoordinatorDelegate?
     var viewDelegate: CatsViewModelViewDelegate?
     
     // MARK: Properties
