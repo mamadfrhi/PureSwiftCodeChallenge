@@ -18,13 +18,14 @@ class CatsCoordinator: Coordinator {
     private let catsStoryboard = UIStoryboard(name: "Cats", bundle: nil)
     private let catDetailsStoryboard = UIStoryboard(name: "CatDetails", bundle: nil)
     
-    private let apiClient: Network
-    private let coreDataManager: Storage
+    private weak var apiClient: Network?
+    private weak var coreDataManager: Storage?
     
     // MARK: VM
     
     private var catsViewModel: CatsViewModel {
-        let catsService = CatsServices(apiClient: apiClient, coreDataManager: coreDataManager)
+        // take care of force-unwrapping
+        let catsService = CatsServices(apiClient: apiClient!, coreDataManager: coreDataManager!)
         let viewModel = CatsViewModel(service: catsService)
         viewModel.coordinatorDelegate = self
         return viewModel

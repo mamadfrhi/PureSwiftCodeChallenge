@@ -8,7 +8,7 @@
 import Foundation
 
 
-protocol Network {
+protocol Network: class {
     func fetch(completionHandler: @escaping (Result<Any?, Error>) -> ())
 }
 

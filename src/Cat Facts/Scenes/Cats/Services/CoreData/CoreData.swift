@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-protocol Storage {
+protocol Storage: class {
     func save(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func delete(object: Any?, completion: @escaping (Result<Bool, Error>) -> ())
     func fetch(completion: @escaping (Result<[Any], Error>) -> ())
