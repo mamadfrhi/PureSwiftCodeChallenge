@@ -44,8 +44,7 @@ class CatDetailsViewController: UIViewController {
 
 extension CatDetailsViewController {
     func deleCatFromLocal() {
-        guard let catsVC = self.parentVC as? CatsViewController,
-              let cat = self.cat else {
+        guard let catsVC = self.parentVC as? CatsViewController else {
             return
         }
         catsVC.viewModel.delete()
