@@ -12,11 +12,11 @@ class AppCoordinator: Coordinator {
     // MARK: Properties
     let window: UIWindow?
     
-    lazy var rootViewController: UINavigationController = {
+    var rootViewController: UINavigationController = {
         return UINavigationController(rootViewController: UIViewController())
     }()
     
-    lazy var apiClient: Network = {
+    var apiClient: Network = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Content-Type": "application/json; charset=utf-8"]
         let apiClient = ApiClient(configuration: configuration)
@@ -26,9 +26,7 @@ class AppCoordinator: Coordinator {
     lazy var coreDataManager = CoreDataManager()
     
     // MARK: Coordinator
-    init(window: UIWindow?) {
-        self.window = window
-    }
+    init(window: UIWindow?) { self.window = window }
     
     override func start() {
         guard let window = window else { return }
