@@ -12,21 +12,24 @@ class Cat_FactsTests: XCTestCase {
     
     func testCatViewData() {
         
-        // Test time convertor
-        let isoTimeStamp = "2022-04-10T16:16:36.940Z"
-        let dateStringFromisoTimeStamp = "2022-04-10"
-        
-        let cat = Cat(_id: "id234-234",
-                      text: "A good cat.",
-                      createdAt: isoTimeStamp)
+        // Test time convertor (in catView wrapper)
+        let isoTimeStamp = "2022-04-10T16:16:36.940Z"    // input
+        let dateStringFromisoTimeStamp = "2022-04-10" // output
+        let factTextInp = "A good cat." // input
+        let factTextOut = "a good cat." // output
+
+        let cat = Cat(_id: "id234-234", text: factTextInp, createdAt: isoTimeStamp)
         let catView = CatViewData(cat: cat)
+        
+        
+        // time conversion
         XCTAssertEqual(catView.createdAt, dateStringFromisoTimeStamp)
-        
-        // Test cat fact text
-        XCTAssertNotEqual(catView.text, cat.text)
-        
         // test cat id
         XCTAssertEqual(catView._id, cat._id)
+        // fact text
+        XCTAssertEqual(catView.text, factTextOut)
+        XCTAssertNotEqual(catView.text, cat.text)
+        
     }
     
     func testCatsViewModel() {
