@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - ViewModelType
+// implement in VM
 protocol CatsViewModelType {
     
     var viewDelegate: CatsViewModelViewDelegate? { get set }
@@ -28,11 +29,15 @@ protocol CatsViewModelType {
 }
 
 // MARK: - ViewModelCoordinator(delegate)
+// implement in CatsCoordinator
+// call in VM
 protocol CatsViewModelCoordinatorDelegate: class {
     func didSelect(cat: Cat, from controller: UIViewController)
 }
 
 // MARK: - ViewModelViewDelegate
+// implement in VC
+// call on VM
 protocol CatsViewModelViewDelegate: class {
     func updateScreen()
     func hud(show: Bool)
