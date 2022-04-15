@@ -23,10 +23,10 @@ class CatsCoordinator: Coordinator {
     
     // MARK: VM
     
-    private var catsViewModel: CatsViewModel {
+    private var catsViewModel: CatsVM {
         // take care of force-unwrapping
         let catsService = CatsServices(apiClient: apiClient!, coreDataManager: coreDataManager!)
-        let viewModel = CatsViewModel(service: catsService)
+        let viewModel = CatsVM(service: catsService)
         viewModel.coordinatorDelegate = self
         return viewModel
     }
@@ -41,7 +41,7 @@ class CatsCoordinator: Coordinator {
     }
     
     override func start() {
-        let catsVC: CatsViewController = catsStoryboard.instantiateViewController(withIdentifier: "Cats") as! CatsViewController
+        let catsVC: CatsVC = catsStoryboard.instantiateViewController(withIdentifier: "Cats") as! CatsVC
         catsVC.viewModel = catsViewModel
         rootNavigationController.setViewControllers([catsVC], animated: false)
     }
@@ -51,7 +51,7 @@ class CatsCoordinator: Coordinator {
 extension CatsCoordinator {
     private func goToCatDetails(with cat: Cat, from controller: UIViewController) {
         print("\n I'm going to transfer you to CatDetail VC \n")
-        let catDetailsVC = self.catDetailsStoryboard.instantiateViewController(withIdentifier: "CatDetails") as! CatDetailsViewController
+        let catDetailsVC = self.catDetailsStoryboard.instantiateViewController(withIdentifier: "CatDetails") as! CatDetailsVC
         self.rootNavigationController.pushViewController(catDetailsVC,
                                                          animated: true)
         catDetailsVC.cat = cat

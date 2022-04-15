@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CatDetailsViewController: UIViewController {
+class CatDetailsVC: UIViewController {
     
     // MARK: Properties
     var cat: Cat?
@@ -42,9 +42,9 @@ class CatDetailsViewController: UIViewController {
 // MARK: - VM
 // Codes below should be written in viewModel
 
-extension CatDetailsViewController {
+extension CatDetailsVC {
     func deleCatFromLocal() {
-        guard let catsVC = self.parentVC as? CatsViewController else {
+        guard let catsVC = self.parentVC as? CatsVC else {
             return
         }
         catsVC.viewModel.delete()

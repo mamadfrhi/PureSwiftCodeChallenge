@@ -7,10 +7,10 @@
 
 import UIKit
 
-class CatsViewController: UIViewController {
+class CatsVC: UIViewController {
     
     // MARK: Properties
-    var viewModel: CatsViewModel! {
+    var viewModel: CatsVM! {
         didSet {
             viewModel.viewDelegate = self
         }
@@ -49,7 +49,7 @@ class CatsViewController: UIViewController {
 }
 
 // MARK: - TableView Delegate & DataSource
-extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
+extension CatsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfItems()
     }
@@ -64,7 +64,7 @@ extension CatsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - ViewModel Delegate
-extension CatsViewController: CatsViewModelViewDelegate {
+extension CatsVC: CatsViewModelViewDelegate {
     func selectedCatRow() -> Int {
         tableViewCats.indexPathForSelectedRow?.row ?? 0
     }

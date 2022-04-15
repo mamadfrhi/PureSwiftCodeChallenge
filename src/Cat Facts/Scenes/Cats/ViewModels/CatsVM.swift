@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CatsViewModel {
+class CatsVM {
     
     // MARK: Delegates
     var coordinatorDelegate: CatsViewModelCoordinatorDelegate?
@@ -46,7 +46,7 @@ class CatsViewModel {
 }
 
 // MARK: - Network
-extension CatsViewModel {
+extension CatsVM {
     private func getNewCat() {
         self.viewDelegate?.hud(show: true)
         service.fetchCat {
@@ -82,7 +82,7 @@ extension CatsViewModel {
 }
 
 // MARK: - Core Data
-extension CatsViewModel {
+extension CatsVM {
     
     private func saveNewCat(cat: Cat) {
         service.save(cat: cat) {
@@ -126,7 +126,7 @@ extension CatsViewModel {
 }
 
 // MARK: - ViewModelType
-extension CatsViewModel: CatsViewModelType {
+extension CatsVM: CatsViewModelType {
     
     func numberOfItems() -> Int {
         cats.count
@@ -164,7 +164,7 @@ extension CatsViewModel: CatsViewModelType {
 }
 
 // MARK: - ViewModelCoordinator
-extension CatsViewModel: CatsViewModelCoordinatorDelegate {
+extension CatsVM: CatsViewModelCoordinatorDelegate {
     func didSelect(cat: Cat, from controller: UIViewController) {
         coordinatorDelegate?.didSelect(cat: cat,
                                        from: controller)
