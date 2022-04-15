@@ -45,11 +45,6 @@ class CatsCoordinator: Coordinator {
         catsVC.viewModel = catsViewModel
         rootNavigationController.setViewControllers([catsVC], animated: false)
     }
-    
-    override func finish() {
-        // sOlid
-    }
-    
 }
 
 // MARK: - Navigation

@@ -16,14 +16,16 @@ class AppCoordinator: Coordinator {
         return UINavigationController(rootViewController: UIViewController())
     }()
     
-    private var apiClient: Network = {
+    // Interview suggestions:
+    // why these are variable?
+    private let apiClient: Network = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = ["Content-Type": "application/json; charset=utf-8"]
         let apiClient = ApiClient(configuration: configuration)
         return apiClient
     }()
     
-    private var coreDataManager = CoreDataManager()
+    private let coreDataManager = CoreDataManager()
     
     // MARK: Coordinator
     init(window: UIWindow?) { self.window = window }

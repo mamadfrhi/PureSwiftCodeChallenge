@@ -22,6 +22,8 @@ class CatsServices {
 // MARK:- API Call
 extension CatsServices {
     func fetchCat(completionHandler: @escaping (Any?, Error?) -> ()){
+        // Interview suggestions:
+        // why you used completion handler?
         apiClient?.fetch { (result) in
             switch result {
             case .success(let cat):

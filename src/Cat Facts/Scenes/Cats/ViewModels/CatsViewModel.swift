@@ -18,6 +18,9 @@ class CatsViewModel {
     private let service: CatsServices // API Call & CoreData
     
     var cats: [Cat] = []
+    // Interview suggestions:
+    // tight coupling
+    // use geter setter
     var catsNSManagedObjects: [NSManagedObject]?
     
     // MARK: Init
@@ -47,6 +50,10 @@ extension CatsViewModel {
             [weak self]
             (cat, error) in
             guard let sSelf = self else { return }
+            
+            // you can write a show error function
+            // and make these if elses like Sixt code challenge on WaitingVM class
+            
             
             if let error = error {
                 DispatchQueue.main.async {
@@ -123,6 +130,8 @@ extension CatsViewModel: CatsViewModelType {
     }
     
     func itemFor(row: Int) -> UITableViewCell {
+        // Interview suggestions:
+        // why they're not in VC?
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
         let catViewData = CatViewData(cat: cats[row])
         cell.textLabel?.text = catViewData._id
