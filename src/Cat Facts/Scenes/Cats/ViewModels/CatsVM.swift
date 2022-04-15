@@ -21,7 +21,7 @@ class CatsVM {
     // Interview suggestions:
     // tight coupling
     // use geter setter
-    private var catsContainer: CatNSObjectsContainer? {
+    var catsContainer: CatNSObjectsContainer? {
         didSet { // update cats
             self.cats = catsContainer!.cats
         }
@@ -84,7 +84,7 @@ extension CatsVM {
 // MARK: - Core Data
 extension CatsVM {
     
-    private func saveNewCat(cat: Cat) {
+    func saveNewCat(cat: Cat) {
         service.save(cat: cat) {
             [weak self]
             (error) in

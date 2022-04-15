@@ -33,53 +33,62 @@ class Cat_FactsTests: XCTestCase {
     }
     
     func testCatsViewModel() {
-        // prepare
+        // - given - SUT
         let api = ApiClient(configuration: URLSessionConfiguration.default)
         let coreData = CoreDataManager()
         let catsServices = CatsServices(apiClient: api,
                                         coreDataManager: coreData)
-        let catsViewModel = CatsViewModel(service: catsServices)
+        let catsViewModel = CatsVM(service: catsServices)
+        // MARK: VM Test
+        // - when - start
         catsViewModel.start()
         
-        // MARK: cats & CoreDataObjects count
-        XCTAssertEqual(catsViewModel.cats.count,
-                       catsViewModel.catsNSManagedObjects?.count)
+        // - then -
+        XCTAssertEqual(catsViewModel.catsContainer?.cats.count,
+                       catsViewModel.catsContainer?.catsNSManagedObjects.count)
         
-        // save a cat
-        let cat = Cat(_id: "idZZZZZ",
+        // - when - save
+        let cat = Cat(_id: "y5Tgd4Gfsj64",
                       text: "A good cat.",
                       createdAt: "2022-04-10T16:16:36.940Z")
         catsViewModel.saveNewCat(cat: cat)
-        XCTAssertEqual(catsViewModel.cats.count,
-                          catsViewModel.catsNSManagedObjects?.count)
+        // - then - save
+        XCTAssertEqual(catsViewModel.catsContainer?.cats.count,
+                       catsViewModel.catsContainer?.catsNSManagedObjects.count)
         
-        // remove recently added cat
+        // - when - remove
         var lastRow = giveLastRow(catViewModel: catsViewModel)
         catsViewModel.remove(at: lastRow)
-        XCTAssertEqual(catsViewModel.cats.count,
-                          catsViewModel.catsNSManagedObjects?.count)
+        // - then - remove
         // check if corresponded item of cat array will reflect in NSObject or not!
-        // MARK:- Table View
-        // rows
-        XCTAssertEqual(catsViewModel.cats.count,
+        XCTAssertEqual(catsViewModel.catsContainer?.cats.count,
+                       catsViewModel.catsContainer?.catsNSManagedObjects.count)
+        // - then - remove
+        XCTAssertEqual(catsViewModel.catsContainer?.cats.count,
                        catsViewModel.numberOfItems())
-        // MARK: test VM cell maker with uitableviewCell itself
+        
+        // MARK:- Table View tests
+        // - given - SUT
         lastRow = giveLastRow(catViewModel: catsViewModel)
         let vmCell = catsViewModel.itemFor(row: lastRow)
         let catVC = makeCatsVC(catsViewModel: catsViewModel)
-        var actualCell = catVC.tableViewCats.dataSource?.tableView(catVC.tableViewCats, cellForRowAt: IndexPath(row: lastRow, section: 0))
         
+        // - when - cell for row at
+        var actualCell = catVC.tableViewCats.dataSource?.tableView(catVC.tableViewCats, cellForRowAt: IndexPath(row: lastRow, section: 0))
+        // - then - cell for row at
         XCTAssertNotNil(actualCell)
         // check text label
         XCTAssertEqual(actualCell?.textLabel?.text, vmCell.textLabel?.text)
         // check detail label
         XCTAssertEqual(actualCell?.detailTextLabel?.text, vmCell.detailTextLabel?.text)
         
-        // MARK: check cell texts with new added cat
+        // - when - save new cat
         catsViewModel.saveNewCat(cat: cat)
+        let catView = CatViewData(cat: cat)
         lastRow = giveLastRow(catViewModel: catsViewModel)
         actualCell = catVC.tableViewCats.dataSource?.tableView(catVC.tableViewCats, cellForRowAt: IndexPath(row: lastRow, section: 0))
-        let catView = CatViewData(cat: cat)
+        
+        // - then - save new cat
         // check text label
         XCTAssertEqual(actualCell?.textLabel?.text, catView._id)
         // check detail label
@@ -92,16 +101,16 @@ class Cat_FactsTests: XCTestCase {
     
     // MARK: Helpers
     
-    func makeCatsVC(catsViewModel: CatsViewModel) -> CatsViewController {
+    func makeCatsVC(catsViewModel: CatsVM) -> CatsVC {
         let catsStoryboard = UIStoryboard(name: "Cats", bundle: nil)
-        let catsVC: CatsViewController = catsStoryboard.instantiateViewController(withIdentifier: "Cats") as! CatsViewController
+        let catsVC: CatsVC = catsStoryboard.instantiateViewController(withIdentifier: "Cats") as! CatsVC
         catsVC.viewModel = catsViewModel
         // Trigger view load and viewDidLoad()
         _ = catsVC.view
         return catsVC
     }
     
-    func giveLastRow(catViewModel: CatsViewModel) -> Int {
-        IndexPath(row: catViewModel.cats.count-1, section: 0).row
+    func giveLastRow(catViewModel: CatsVM) -> Int {
+        IndexPath(row: (catViewModel.catsContainer?.cats.count)!-1, section: 0).row
     }
 }
