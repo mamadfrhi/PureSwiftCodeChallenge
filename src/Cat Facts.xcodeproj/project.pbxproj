@@ -14,10 +14,10 @@
 		874E72AE28002B3A003F5280 /* CatServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72AD28002B3A003F5280 /* CatServices.swift */; };
 		874E72B328002E81003F5280 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E72B228002E81003F5280 /* CatsViewController.swift */; };
 		875B456828032AA800D0D349 /* Cat_FactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875B456728032AA800D0D349 /* Cat_FactsTests.swift */; };
+		876ACFFE2809C4FC00A34988 /* CatObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876ACFFD2809C4FC00A34988 /* CatObjectContainer.swift */; };
 		8788DD602800F1F9003CFC2B /* CatDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8788DD5F2800F1F9003CFC2B /* CatDetails.storyboard */; };
 		8788DD632800F224003CFC2B /* CatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788DD622800F224003CFC2B /* CatDetailsViewController.swift */; };
 		87ABDB9028018B4A00A7C3C8 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ABDB8F28018B4A00A7C3C8 /* CoreData.swift */; };
-		87ABDB9F2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ABDB9E2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift */; };
 		87B5B5C5280323EC00EB7992 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B5B5C4280323EC00EB7992 /* extensions.swift */; };
 		87C9BA43280019E000BBCFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA42280019E000BBCFEC /* AppDelegate.swift */; };
 		87C9BA4D280019E000BBCFEC /* Cat_Facts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87C9BA4B280019E000BBCFEC /* Cat_Facts.xcdatamodeld */; };
@@ -51,10 +51,10 @@
 		875B456528032AA800D0D349 /* Cat FactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cat FactsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		875B456728032AA800D0D349 /* Cat_FactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat_FactsTests.swift; sourceTree = "<group>"; };
 		875B456928032AA800D0D349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		876ACFFD2809C4FC00A34988 /* CatObjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatObjectContainer.swift; sourceTree = "<group>"; };
 		8788DD5F2800F1F9003CFC2B /* CatDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CatDetails.storyboard; sourceTree = "<group>"; };
 		8788DD622800F224003CFC2B /* CatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailsViewController.swift; sourceTree = "<group>"; };
 		87ABDB8F28018B4A00A7C3C8 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		87ABDB9E2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCoreDataConvertor.swift; sourceTree = "<group>"; };
 		87B5B5C4280323EC00EB7992 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		87C9BA3F280019E000BBCFEC /* Cat Facts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cat Facts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C9BA42280019E000BBCFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +115,13 @@
 			path = "Cat FactsTests";
 			sourceTree = "<group>";
 		};
+		876ACFFC2809C4F000A34988 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		8788DD5D2800F018003CFC2B /* CatDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,9 +134,9 @@
 		87ABDB8E28018B2F00A7C3C8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				876ACFFD2809C4FC00A34988 /* CatObjectContainer.swift */,
 				87EBCBC12802C753001750A4 /* CoreDataContainer.swift */,
 				87ABDB8F28018B4A00A7C3C8 /* CoreData.swift */,
-				87ABDB9E2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -155,6 +162,7 @@
 		87C9BA41280019E000BBCFEC /* Cat Facts */ = {
 			isa = PBXGroup;
 			children = (
+				876ACFFC2809C4F000A34988 /* CoreData */,
 				87C9BA42280019E000BBCFEC /* AppDelegate.swift */,
 				87C9BA4B280019E000BBCFEC /* Cat_Facts.xcdatamodeld */,
 				87C9BA5C28001A6800BBCFEC /* Scenes */,
@@ -340,11 +348,11 @@
 				87B5B5C5280323EC00EB7992 /* extensions.swift in Sources */,
 				87C9BA6A28001B1200BBCFEC /* CatsCoordinator.swift in Sources */,
 				874E72B328002E81003F5280 /* CatsViewController.swift in Sources */,
+				876ACFFE2809C4FC00A34988 /* CatObjectContainer.swift in Sources */,
 				873665432800C66B005EDA25 /* ProgressHUD.swift in Sources */,
 				87EBCBC22802C753001750A4 /* CoreDataContainer.swift in Sources */,
 				87C9BA6228001A9900BBCFEC /* Coordinator.swift in Sources */,
 				874E72A928002AF6003F5280 /* CatsViewModel.swift in Sources */,
-				87ABDB9F2801CE0E00A7C3C8 /* CatCoreDataConvertor.swift in Sources */,
 				87D150E328030FF60082BE96 /* InternetConnectionManager.swift in Sources */,
 				87C9BA5E28001A8C00BBCFEC /* AppCoordinator.swift in Sources */,
 				87C9BA4D280019E000BBCFEC /* Cat_Facts.xcdatamodeld in Sources */,

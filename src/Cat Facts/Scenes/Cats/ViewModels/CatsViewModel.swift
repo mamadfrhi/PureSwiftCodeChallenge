@@ -17,11 +17,15 @@ class CatsViewModel {
     // MARK: Properties
     private let service: CatsServices // API Call & CoreData
     
-    var cats: [Cat] = []
+    private var cats: [Cat] = []
     // Interview suggestions:
     // tight coupling
     // use geter setter
-    var catsNSManagedObjects: [NSManagedObject]?
+    private var catsContainer: CatNSObjectsContainer? {
+        didSet { // update cats
+            self.cats = catsContainer!.cats
+        }
+    }
     
     // MARK: Init
     init(service: CatsServices) { self.service = service }
@@ -34,9 +38,8 @@ class CatsViewModel {
                   let catsNSObjectArray = catsNSObjectArray as? [NSManagedObject] else {
                 return
             }
-            sSelf.catsNSManagedObjects = catsNSObjectArray
-            let cats = CatCoreDataConvertor().giveMeCats(from: catsNSObjectArray)
-            sSelf.cats = cats
+            let catContainer = CatNSObjectsContainer(catsNSManagedObjects: catsNSObjectArray)
+            sSelf.catsContainer = catContainer
         }
     }
     
@@ -81,7 +84,7 @@ extension CatsViewModel {
 // MARK: - Core Data
 extension CatsViewModel {
     
-    func saveNewCat(cat: Cat) {
+    private func saveNewCat(cat: Cat) {
         service.save(cat: cat) {
             [weak self]
             (error) in
@@ -101,7 +104,7 @@ extension CatsViewModel {
     func remove(at index: Int?) {
         
         guard let row = index,
-              let catNSManagedObj = catsNSManagedObjects?[row] else { return }
+              let catNSManagedObj = catsContainer?.catsNSManagedObjects[row] else { return }
         
         service.delete(cat: catNSManagedObj) {
             [weak self]
@@ -126,7 +129,7 @@ extension CatsViewModel {
 extension CatsViewModel: CatsViewModelType {
     
     func numberOfItems() -> Int {
-        return cats.count
+        cats.count
     }
     
     func itemFor(row: Int) -> UITableViewCell {
