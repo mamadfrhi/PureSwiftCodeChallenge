@@ -55,20 +55,16 @@ class CatsVC: UIViewController {
 // MARK: - TableView Delegate & DataSource
 extension CatsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfItems()
+        viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let catViewData = viewModel.cellDataFor(row: indexPath.row)
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID) as? CatTableViewCell
-        
-        if cell == nil {
-            cell = CatTableViewCell(style: .default, reuseIdentifier: cellReuseID)
-//            cell!.catCellView.catViewData = catViewData
-        }
-        return cell!
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = catViewData._id
+        cell.detailTextLabel?.text = catViewData.createdAt
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
