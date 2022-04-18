@@ -14,7 +14,7 @@ protocol CatsViewModelType {
     var viewDelegate: CatsViewModelViewDelegate? { get set }
     
     // Data Source
-    func numberOfItems() -> Int
+    func numberOfRows() -> Int
     
     func cellDataFor(row: Int) -> CatViewData
     

@@ -128,9 +128,7 @@ extension CatsVM {
 // MARK: - ViewModelType
 extension CatsVM: CatsViewModelType {
     
-    func numberOfItems() -> Int {
-        cats.count
-    }
+    func numberOfRows() -> Int { cats.count }
     
     func cellDataFor(row: Int) -> CatViewData {
         // Interview suggestions:
