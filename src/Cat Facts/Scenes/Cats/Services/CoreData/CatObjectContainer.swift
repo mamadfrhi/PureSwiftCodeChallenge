@@ -11,16 +11,16 @@ import Foundation
 class CatNSObjectsContainer {
     
     // MARK: Properties
-    var catsNSManagedObjects: [NSManagedObject] = []
+    let catsNSManagedObjects: [NSManagedObject]!
     var cats: [Cat] = []
     
     // MARK: Init
-    init(catsNSManagedObjects: [NSManagedObject]) {
+    required init(catsNSManagedObjects: [NSManagedObject]) {
         self.catsNSManagedObjects = catsNSManagedObjects
-        convertCatsToNSManagedObjects()
+        convertNSManagedObjectsToCats()
     }
     // TODO: Change name of function
-    private func convertCatsToNSManagedObjects() {
+    private func convertNSManagedObjectsToCats() {
         
         for nsManagedObj in catsNSManagedObjects {
             // unwrap
