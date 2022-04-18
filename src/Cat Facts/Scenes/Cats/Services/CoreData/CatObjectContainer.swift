@@ -19,7 +19,7 @@ class CatNSObjectsContainer {
         self.catsNSManagedObjects = catsNSManagedObjects
         convertCatsToNSManagedObjects()
     }
-    
+    // TODO: Change name of function
     private func convertCatsToNSManagedObjects() {
         
         for nsManagedObj in catsNSManagedObjects {

@@ -28,7 +28,7 @@ class CatsVM {
     }
     
     // MARK: Init
-    init(service: CatsServices) { self.service = service }
+    required init(service: CatsServices) { self.service = service }
     
     func start() {
         service.fetchSavedCats {
@@ -132,14 +132,11 @@ extension CatsVM: CatsViewModelType {
         cats.count
     }
     
-    func itemFor(row: Int) -> UITableViewCell {
+    func cellDataFor(row: Int) -> CatViewData {
         // Interview suggestions:
         // why they're not in VC?
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "catID")
-        let catViewData = CatViewData(cat: cats[row])
-        cell.textLabel?.text = catViewData._id
-        cell.detailTextLabel?.text = catViewData.createdAt
-        return cell
+        let cat = cats[row]
+        return CatViewData(cat: cat)
     }
     
     func add() {

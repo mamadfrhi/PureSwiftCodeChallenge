@@ -21,13 +21,9 @@ struct Cat: CatViewDataType, Decodable {
 
 struct CatViewData: CatViewDataType {
     
-    var _id: String {
-        return cat._id
-    }
+    var _id: String { return cat._id }
     
-    var text: String {
-        return cat.text.firstLowercased
-    }
+    var text: String { return cat.text.firstLowercased }
     
     var createdAt: String {
         // iso

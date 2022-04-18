@@ -16,6 +16,9 @@ class CatsVC: UIViewController {
         }
     }
     private let hud = ProgressHUD(title: "Please wait...", theme: .dark)
+    // table view
+    private let cellReuseID = "CatID"
+    private let catCellViewNib = "CatCellView"
     // hud means Heads-up Display
     
     // MARK: Outlets
@@ -23,25 +26,26 @@ class CatsVC: UIViewController {
     @IBOutlet weak var labelErrorMessage: UILabel!
     
     // MARK: UIViewController
-    override func loadView() {
-        super.loadView()
-        viewModel.start()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        viewModel.start()
     }
 
     // MARK: Setup
     private func setup() {
         setupDelegeates()
+        setupTableViewCells()
         [hud].forEach(view.addSubview(_:)) // add HUD on VC
     }
     private func setupDelegeates() {
         tableViewCats.delegate = self
         tableViewCats.dataSource = self
     }
-
+    private func setupTableViewCells() {
+        let catCellNib = UINib(nibName: catCellViewNib, bundle:nil)
+        tableViewCats.register(catCellNib, forCellReuseIdentifier: cellReuseID)
+    }
     // MARK: Actions
     @IBAction func add(_ sender: Any) {
         viewModel.add()
@@ -55,7 +59,16 @@ extension CatsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        viewModel.itemFor(row: indexPath.item)
+        
+        let catViewData = viewModel.cellDataFor(row: indexPath.row)
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseID) as? CatTableViewCell
+        
+        if cell == nil {
+            cell = CatTableViewCell(style: .default, reuseIdentifier: cellReuseID)
+//            cell!.catCellView.catViewData = catViewData
+        }
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

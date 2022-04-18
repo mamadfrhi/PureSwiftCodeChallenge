@@ -16,7 +16,7 @@ protocol CatsViewModelType {
     // Data Source
     func numberOfItems() -> Int
     
-    func itemFor(row: Int) -> UITableViewCell
+    func cellDataFor(row: Int) -> CatViewData
     
     // Events
     func add()
